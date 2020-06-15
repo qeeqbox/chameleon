@@ -11,9 +11,8 @@ Customizable honeypots (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP
 #### NMAP Scan
 <img src="https://raw.githubusercontent.com/qeeqbox/chameleon/master/readme/nmap_scan.png" style="max-width:768px"/>
 
-#### NMAP Scan
+#### Credentials Monitoring
 <img src="https://raw.githubusercontent.com/qeeqbox/chameleon/master/readme/creds_monitoring.png" style="max-width:768px"/>
-
 
 ## General Features
 - Modular approach (honeypots run as scripts or imported as objects)
