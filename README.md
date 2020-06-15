@@ -5,8 +5,15 @@
 
 Customizable honeypots (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP, VNC, SMB, SOCK5, TELNET and Postgres) for monitoring network traffic, bots activities and loose credentials
 
-## React Web Interface
+## Grafana Interface
 <img src="https://raw.githubusercontent.com/qeeqbox/chameleon/master/readme/intro.png" style="max-width:768px"/>
+
+#### NMAP Scan
+<img src="https://raw.githubusercontent.com/qeeqbox/chameleon/master/readme/nmap_scan.png" style="max-width:768px"/>
+
+#### NMAP Scan
+<img src="https://raw.githubusercontent.com/qeeqbox/chameleon/master/readme/creds_monitoring.png" style="max-width:768px"/>
+
 
 ## General Features
 - Modular approach (honeypots run as scripts or imported as objects)
@@ -29,13 +36,14 @@ Customizable honeypots (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP
 
 ## Example
 #### Easy to run and configure (Default configuration)
-
+```python
 from ssh_server import QSSHServer
 qsshserver = QSSHServer()
 qsshserver.run_server()
+```
 
 #### Or, edit the configuration
-'''python
+```python
 ip= String E.g. 0.0.0.0
 port= Int E.g. 22
 username= String E.g. Test
@@ -45,25 +53,26 @@ logs= String E.g db, terminal or all
 
 qsshserver = QSSHServer(ip="0.0.0.0",port=22,username="Test",password="Test",mocking="OpenSSH 7.0",logs="terminal")
 qsshserver = QSSHServer()
-'''
+```
+
 ## Install and run
 #### On ubuntu 18 or 19 System (Auto-configure test)
-'''bash
+```bash
 git clone https://github.com/qeeqbox/chameleon.git
 cd chameleon
 chmod +x ./run.sh
 ./run.sh auto_test
 open localhost:3000 (username and passowrd: admin)
-'''
+```
 
 #### On ubuntu 18 or 19 System (Auto-configure dev)
-'''bash
+```bash
 git clone https://github.com/qeeqbox/chameleon.git
 cd chameleon
 chmod +x ./run.sh
 ./run.sh auto_dev
 open localhost:3000 (username and passowrd in the docker-compose-dev.yml file)
-'''
+```
 
 ## Resources
 - Twisted documentation
@@ -72,7 +81,6 @@ open localhost:3000 (username and passowrd in the docker-compose-dev.yml file)
 - Expert Twisted
 - robertheaton
 - Please let me know if i missed a resource or dependency
-```
 
 ## Other Licenses
 By using this framework, you are accepting the license terms of each package listed below:
