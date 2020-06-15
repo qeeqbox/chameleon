@@ -6,7 +6,7 @@
 Customizable honeypots (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP, VNC, SMB, SOCK5, TELNET and Postgres) for monitoring network traffic, bots activities and loose credentials
 
 ## React Web Interface
-<img src="https://raw.githubusercontent.com/qeeqbox/chameleon/master/readme/introv.png" style="max-width:768px"/>
+<img src="https://raw.githubusercontent.com/qeeqbox/chameleon/master/readme/intro.png" style="max-width:768px"/>
 
 ## General Features
 - Modular approach (honeypots run as scripts or imported as objects)
