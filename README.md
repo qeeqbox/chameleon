@@ -51,7 +51,7 @@ mocking= Boolean or String E.g OpenSSH 7.0
 logs= String E.g db, terminal or all
 
 qsshserver = QSSHServer(ip="0.0.0.0",port=22,username="Test",password="Test",mocking="OpenSSH 7.0",logs="terminal")
-qsshserver = QSSHServer()
+qsshserver.run_server()
 ```
 
 ## Install and run
