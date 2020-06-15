@@ -42,7 +42,7 @@ if [[ "$1" == "auto_dev" ]]; then
 	exit 
 fi
 
-while read -p "`echo -e '\nChoose an option:\n1) Setup requirements (docker, docker-compose)\n2) Test the project (All servers and Sniffer)\n9) Auto-configure and test\n>> '`"; do
+while read -p "`echo -e '\nChoose an option:\n1) Setup requirements (docker, docker-compose)\n2) Test the project (All servers and Sniffer)\n8) Run auto dev)\n9) Run auto test\n>> '`"; do
   case $REPLY in
     "1") setup_requirements;;
     "2") test_project;;
