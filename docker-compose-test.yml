@@ -1,0 +1,59 @@
+version: '3.1'
+
+services:
+  backend_api:
+    build: ./honeypot
+    restart: always
+    cap_add:
+      - NET_ADMIN
+    privileged: true
+    depends_on:
+      - postgres
+    networks:
+      - backend
+      - frontend
+
+  node:
+    build:
+      context: .
+      dockerfile: ./node-Dockerfile
+    command: /honeypot/testing.sh
+    cap_add:
+      - NET_ADMIN
+    privileged: true
+    depends_on:
+      - backend_api
+    networks:
+      - backend
+      - frontend
+
+  grafana:
+    build: ./grafana
+    container_name: grafana
+    command: ./import.sh
+    ports:
+      - '3000:3000'
+    links:
+      - postgres
+    depends_on:
+      - backend_api
+    networks:
+      - backend
+      - frontend
+
+  postgres:
+    image: postgres:9.6
+    container_name: postgres
+    restart: always
+    networks:
+      - backend
+    command: -p 9999
+    environment:
+      POSTGRES_USER: changeme027a088931d22
+      POSTGRES_PASSWORD: changeme0f40773877963
+
+networks:
+  frontend:
+    internal: false
+  backend:
+    internal: true

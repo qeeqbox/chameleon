@@ -1,0 +1,62 @@
+version: '2'
+
+services:
+  backend_api:
+    build: ./honeypot
+    restart: always
+    cap_add:
+      - NET_ADMIN
+    privileged: true
+    depends_on:
+      - postgres
+    networks:
+      - backend
+      - frontend
+    expose:
+      - '21'
+      - '22'
+      - '23'
+      - '25'
+      - '53'
+      - '80'
+      - '110'
+      - '143'
+      - '443'
+      - '445'
+      - '1080'
+      - '3389'
+      - '5900'
+      - '8080'
+
+  grafana:
+    build: ./grafana
+    container_name: grafana
+    command: ./import.sh
+    ports:
+      - '3000:3000'
+    links:
+      - postgres
+    depends_on:
+      - backend_api
+    networks:
+      - backend
+      - frontend
+    environment:
+      GF_SECURITY_ADMIN_USER: changeme457f6460cb287
+      GF_SECURITY_ADMIN_PASSWORD: changemed23b8cc6a20e0
+
+  postgres:
+    image: postgres:9.4.4
+    container_name: postgres
+    restart: always
+    networks:
+      - backend
+    environment:
+      POSTGRES_USER: changeme027a088931d22
+      POSTGRES_PASSWORD: changeme0f40773877963
+
+networks:
+  frontend:
+    internal: false
+  backend:
+    internal: true
