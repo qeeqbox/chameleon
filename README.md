@@ -35,24 +35,40 @@ Customizable honeypots (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP
 - Adding a control panel
 
 ## Example
-#### Easy to run and configure (Default configuration)
+#### Easy to run, configure, edit and test (Default configuration)
 ```python
 from ssh_server import QSSHServer
 qsshserver = QSSHServer()
 qsshserver.run_server()
 ```
 
-#### Or, edit the configuration
+``` bash
+ssh test@127.0.0.1
+```
+
+``` bash
+INFO:chameleonlogger:['servers', {'status': 'success', 'username': 'test', 'ip': '127.0.0.1', 'server': 'ssh_server', 'action': 'login', 'password': 'test', 'port': 38696}]
+```
+
+#### Or, edit the configuration (SSH server example)
 ```python
 ip= String E.g. 0.0.0.0
-port= Int E.g. 22
+port= Int E.g. 400
 username= String E.g. Test
 password= String E.g. Test
 mocking= Boolean or String E.g OpenSSH 7.0
 logs= String E.g db, terminal or all
 
-qsshserver = QSSHServer(ip="0.0.0.0",port=22,username="Test",password="Test",mocking="OpenSSH 7.0",logs="terminal")
+qsshserver = QSSHServer(ip="0.0.0.0",port=400,username="Test",password="Test",mocking="OpenSSH 7.0",logs="terminal")
 qsshserver.run_server()
+```
+
+``` bash
+ssh test@127.0.0.1 -p 400
+```
+
+``` bash
+INFO:chameleonlogger:['servers', {'status': 'success', 'username': 'test', 'ip': '127.0.0.1', 'server': 'ssh_server', 'action': 'login', 'password': 'test', 'port': 38699}]
 ```
 
 ## Install and run
@@ -72,6 +88,14 @@ cd chameleon
 chmod +x ./run.sh
 ./run.sh auto_dev
 open localhost:3000 (username and passowrd in the docker-compose-dev.yml file)
+```
+
+## Requirements (Servers only)
+```bash
+apt-get update -y && apt-get install -y iptables-persistent tcpdump nmap iputils-ping python python-pip python-psycopg2 lsof psmisc dnsutils
+pip install scapy netifaces pyftpdlib sqlalchemy pyyaml paramiko==2.7.1 impacket twisted rdpy==1.3.2 psutil requests
+pip install -U requests[socks]
+pip install -Iv rsa==4.0
 ```
 
 ## Resources
