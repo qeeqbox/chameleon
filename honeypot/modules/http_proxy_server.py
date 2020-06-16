@@ -10,6 +10,9 @@ from signal import SIGTERM
 from multiprocessing import Process
 from requests import get
 from logging import DEBUG, Handler, WARNING, getLogger,basicConfig
+from twisted.python import log as tlog
+from os import path
+from tempfile import gettempdir,_get_candidate_names
 
 class QHTTPPoxyServer():
 	def __init__(self,ip=None,port=None,mocking=None,logs=None):
@@ -17,6 +20,11 @@ class QHTTPPoxyServer():
 		self.port = port or 8080 
 		self.mocking = mocking or None
 		self.setup_logger(logs)
+		self.disable_logger()
+
+	def disable_logger(self):
+		temp_name = path.join(gettempdir(), next(_get_candidate_names()))
+		tlog.startLogging(open(temp_name, "w"), setStdout=False)
 
 	def setup_logger(self,logs):
 		self.logs = getLogger("chameleonlogger")

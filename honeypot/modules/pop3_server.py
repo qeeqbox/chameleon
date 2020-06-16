@@ -10,6 +10,9 @@ from time import sleep
 from multiprocessing import Process
 from poplib import POP3 as poplibPOP3
 from logging import DEBUG, Handler, WARNING, getLogger,basicConfig
+from twisted.python import log as tlog
+from os import path
+from tempfile import gettempdir,_get_candidate_names
 
 class QPOP3Server():
 	def __init__(self,ip=None,port=None,username=None,password=None,mocking=False,logs=None):
@@ -20,6 +23,11 @@ class QPOP3Server():
 		self.mocking = mocking or None
 		self.random_servers = ['Microsoft Exchange POP3 service is ready']
 		self.setup_logger(logs)
+		self.disable_logger()
+
+	def disable_logger(self):
+		temp_name = path.join(gettempdir(), next(_get_candidate_names()))
+		tlog.startLogging(open(temp_name, "w"), setStdout=False)
 
 	def setup_logger(self,logs):
 		self.logs = getLogger("chameleonlogger")

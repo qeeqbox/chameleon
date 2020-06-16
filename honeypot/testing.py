@@ -16,7 +16,7 @@ from modules.server_options import server_arguments
 from socket import gethostbyname
 
 parsed = server_arguments()
-parsed.ip = gethostbyname("backend_api")
+parsed.ip = gethostbyname("honeypot")
 parsed.logs = "terminal"
 parsed.mocking = True
 

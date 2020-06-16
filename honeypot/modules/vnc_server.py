@@ -9,6 +9,9 @@ from multiprocessing import Process
 from Crypto.Cipher import DES
 from binascii import unhexlify
 from logging import DEBUG, Handler, WARNING, getLogger,basicConfig
+from twisted.python import log as tlog
+from os import path
+from tempfile import gettempdir,_get_candidate_names
 
 class QVNCServer():
 	def __init__(self,ip=None,port=None,username=None,password=None,mocking=False,dict_=None,logs=None):
@@ -25,6 +28,11 @@ class QVNCServer():
 		else:
 			self.load_words()
 		self.setup_logger(logs)
+		self.disable_logger()
+
+	def disable_logger(self):
+		temp_name = path.join(gettempdir(), next(_get_candidate_names()))
+		tlog.startLogging(open(temp_name, "w"), setStdout=False)
 
 	def setup_logger(self,logs):
 		self.logs = getLogger("chameleonlogger")

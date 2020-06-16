@@ -13,6 +13,9 @@ from multiprocessing import Process
 from tempfile import gettempdir
 from os import path
 from logging import DEBUG, Handler, WARNING, getLogger,basicConfig
+from twisted.python import log as tlog
+from os import path
+from tempfile import gettempdir,_get_candidate_names
 
 def gen_random_string(n):
 	return ''.join(choice(digits+ascii_lowercase) for _ in range(n))
@@ -30,6 +33,11 @@ class QRDPServer():
 		self.key = gen_random_path_name(6)
 		self.cert = gen_random_path_name(6)
 		self.setup_logger(logs)
+		self.disable_logger()
+
+	def disable_logger(self):
+		temp_name = path.join(gettempdir(), next(_get_candidate_names()))
+		tlog.startLogging(open(temp_name, "w"), setStdout=False)
 
 	def setup_logger(self,logs):
 		self.logs = getLogger("chameleonlogger")
@@ -77,7 +85,7 @@ class QRDPServer():
 					_q_s.logs.info(["servers",{'server':'rdp_server','action':'login','status':'success','ip':client.host,'port':client.port,'username':username,'password':password}])
 				else:
 					_q_s.logs.info(["servers",{'server':'rdp_server','action':'login','status':'failed','ip':client.host,'port':client.port,'username':username,'password':password}])
-				self._controller.getProtocol().transport.abortConnection()
+				self._controller.getProtocol().transport.loseConnection()
 				return
 
 			def onClose(self):

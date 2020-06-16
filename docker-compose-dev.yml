@@ -1,7 +1,7 @@
-version: '2'
+version: '3.1'
 
 services:
-  backend_api:
+  honeypot:
     build: ./honeypot
     restart: always
     cap_add:
@@ -37,7 +37,7 @@ services:
     links:
       - postgres
     depends_on:
-      - backend_api
+      - honeypot
     networks:
       - backend
       - frontend
@@ -46,12 +46,12 @@ services:
       GF_SECURITY_ADMIN_PASSWORD: changemed23b8cc6a20e0
 
   postgres:
-    image: postgres:9.4.4
+    image: postgres:9.6
     container_name: postgres
     restart: always
     networks:
       - backend
-    environment:
+    command: -p 9999
       POSTGRES_USER: changeme027a088931d22
       POSTGRES_PASSWORD: changeme0f40773877963
 

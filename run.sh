@@ -1,9 +1,9 @@
-echo -e "\nQeeqBox Chameleon starter script -> https://github.com/qeeqbox/Chameleon"
+echo -e "\nQeeqBox Chameleon v$(jq -r '.version' info) starter script -> https://github.com/qeeqbox/Chameleon"
 echo -e "Current servers (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP, VNC, SMB, SOCK5, TELNET and Postgres)\n"\
 
 setup_requirements () {
 	sudo apt update -y
-	sudo apt install -y linux-headers-$(uname -r) docker.io
+	sudo apt install -y linux-headers-$(uname -r) docker.io jq
 	sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 	sudo chmod +x /usr/local/bin/docker-compose
 	which docker-compose && echo "Good"
@@ -42,7 +42,7 @@ if [[ "$1" == "auto_dev" ]]; then
 	exit 
 fi
 
-while read -p "`echo -e '\nChoose an option:\n1) Setup requirements (docker, docker-compose)\n2) Test the project (All servers and Sniffer)\n8) Run auto dev)\n9) Run auto test\n>> '`"; do
+while read -p "`echo -e '\nChoose an option:\n1) Setup requirements (docker, docker-compose)\n2) Test the project (All servers and Sniffer)\n8) Run auto dev\n9) Run auto test\n>> '`"; do
   case $REPLY in
     "1") setup_requirements;;
     "2") test_project;;
