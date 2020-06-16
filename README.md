@@ -27,8 +27,9 @@ Customizable honeypots (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP
 
 ## Roadmap
 - ~~Refactoring logging~~
+- ~~Fixing logger~~
 - Code Cleanup
-- Adding error response
+- Adding graceful connection close (error response)
 - Implementing the rest of servers
 - Adding some detection logic to the sinffer
 - Adding a control panel
