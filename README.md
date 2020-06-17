@@ -35,6 +35,7 @@ Customizable honeypots (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP
 - Adding some detection logic to the sinffer
 - Adding a control panel
 
+## Install and run
 #### On ubuntu 18 or 19 System (Auto-configure dev)
 ```bash
 git clone https://github.com/qeeqbox/chameleon.git
@@ -49,11 +50,10 @@ honeypot_1  | Your IP: 172.19.0.3
 honeypot_1  | Your MAC: 09:45:aa:23:10:03
 ...
 ```
-You can interact with the honeypot from your local 
-```
+You can interact with the honeypot from your local system
 ```bash
 ping 172.19.0.3
-or run your network tool against it
+or run any network tool against it
 nmap 172.19.0.3
 ```
 To mointor the logs
@@ -61,7 +61,6 @@ To mointor the logs
 open localhost:3000 (username is changeme457f6460cb287 and passowrd is changemed23b8cc6a20e0)
 ```
 
-## Install and run
 #### On ubuntu 18 or 19 System (Auto-configure test)
 ```bash
 git clone https://github.com/qeeqbox/chameleon.git
