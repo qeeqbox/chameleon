@@ -21,6 +21,7 @@ Customizable honeypots (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP
 - ICMP, DNS TCP and UDP payloads are parsed and check against common patterns
 - Visualized Grafana interfaces for monitoring the results (Filter by IP)
 - Unstructured and structured logs are parsed and inserted into Postgres
+- All honeypots contain clients for testing the servers
 - All ports are opened and monitored by default
 - Easy automation and can be deployed on AWS ec2
 - & More features to Explore
