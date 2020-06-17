@@ -44,6 +44,8 @@ services:
     environment:
       GF_SECURITY_ADMIN_USER: changeme457f6460cb287
       GF_SECURITY_ADMIN_PASSWORD: changemed23b8cc6a20e0
+    logging:
+        driver: none
 
   postgres:
     image: postgres:9.6
@@ -52,8 +54,11 @@ services:
     networks:
       - backend
     command: -p 9999
+    environment:
       POSTGRES_USER: changeme027a088931d22
       POSTGRES_PASSWORD: changeme0f40773877963
+    logging:
+        driver: none
 
 networks:
   frontend:

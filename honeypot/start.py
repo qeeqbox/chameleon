@@ -1,27 +1,26 @@
 from time import sleep
 from sys import stdout
 from logging import DEBUG, Handler, WARNING, getLogger,basicConfig
-
+from subprocess import Popen
+from netifaces import ifaddresses,AF_INET,AF_LINK
+print('Your IP: {}'.format(ifaddresses('eth0')[AF_INET][0]['addr'].encode('utf-8')))
+print('Your MAC: {}'.format(ifaddresses('eth0')[AF_LINK][0]['addr'].encode('utf-8')))
+Popen('iptables -A OUTPUT -p tcp -m tcp --tcp-flags RST RST -j DROP',shell=True)
 print('Wait for 10 seconds..')
-sleep(10)
 stdout.flush()
+
+sleep(10)
 from modules.postgres_conn import postgres_class
 postgres_class(drop=True)
 
 from modules.custom_logging import CustomHandler
 from psutil import Process,net_io_counters
 from ntpath import basename
-from netifaces import ifaddresses,AF_INET,AF_LINK
-from subprocess import Popen
 from glob import glob
 
 logs = getLogger('chameleonlogger')
 logs.setLevel(DEBUG)	
 logs.addHandler(CustomHandler('db'))
-
-print('Your IP: {}'.format(ifaddresses('eth0')[AF_INET][0]['addr'].encode('utf-8')))
-print('Your MAC: {}'.format(ifaddresses('eth0')[AF_LINK][0]['addr'].encode('utf-8')))
-Popen('iptables -A OUTPUT -p tcp -m tcp --tcp-flags RST RST -j DROP',shell=True)
 
 servers = [] 
 

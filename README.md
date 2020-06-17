@@ -35,7 +35,49 @@ Customizable honeypots (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP
 - Adding some detection logic to the sinffer
 - Adding a control panel
 
+#### On ubuntu 18 or 19 System (Auto-configure dev)
+```bash
+git clone https://github.com/qeeqbox/chameleon.git
+cd chameleon
+chmod +x ./run.sh
+./run.sh auto_dev
+```
+Wait for a few seconds until honeypot shows the IP address
+```bash
+...
+honeypot_1  | Your IP: 172.19.0.3
+honeypot_1  | Your MAC: 09:45:aa:23:10:03
+...
+```
+You can interact with the honeypot from your local 
+```
+```bash
+ping 172.19.0.3
+or run your network tool against it
+nmap 172.19.0.3
+```
+To mointor the logs
+```bash
+open localhost:3000 (username is changeme457f6460cb287 and passowrd is changemed23b8cc6a20e0)
+```
+
+## Install and run
+#### On ubuntu 18 or 19 System (Auto-configure test)
+```bash
+git clone https://github.com/qeeqbox/chameleon.git
+cd chameleon
+chmod +x ./run.sh
+./run.sh auto_test
+```
+To mointor the logs
+```bash
+open localhost:3000 (username and passowrd: admin)
+```
+
 ## SSH Server and Client Example (Easy to run, configure, edit and test)
+```bash
+copy ssh_server.py to your test folder
+```
 ```python
 from ssh_server import QSSHServer
 qsshserver = QSSHServer()
@@ -57,6 +99,8 @@ username= String E.g. Test
 password= String E.g. Test
 mocking= Boolean or String E.g OpenSSH 7.0
 logs= String E.g db, terminal or all
+
+from ssh_server import QSSHServer
 qsshserver = QSSHServer(ip="0.0.0.0",port=400,username="Test",password="Test",mocking="OpenSSH 7.0",logs="terminal")
 qsshserver.run_server()
 ```
@@ -65,25 +109,6 @@ ssh test@127.0.0.1 -p 400
 ```
 ``` bash
 INFO:chameleonlogger:['servers', {'status': 'success', 'username': 'test', 'ip': '127.0.0.1', 'server': 'ssh_server', 'action': 'login', 'password': 'test', 'port': 38699}]
-```
-
-## Install and run
-#### On ubuntu 18 or 19 System (Auto-configure test)
-```bash
-git clone https://github.com/qeeqbox/chameleon.git
-cd chameleon
-chmod +x ./run.sh
-./run.sh auto_test
-open localhost:3000 (username and passowrd: admin)
-```
-
-#### On ubuntu 18 or 19 System (Auto-configure dev)
-```bash
-git clone https://github.com/qeeqbox/chameleon.git
-cd chameleon
-chmod +x ./run.sh
-./run.sh auto_dev
-open localhost:3000 (username and passowrd in the docker-compose-dev.yml file)
 ```
 
 ## Requirements (Servers only)
