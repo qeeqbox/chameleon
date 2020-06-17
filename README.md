@@ -41,11 +41,9 @@ from ssh_server import QSSHServer
 qsshserver = QSSHServer()
 qsshserver.run_server()
 ```
-
 ``` bash
 ssh test@127.0.0.1
 ```
-
 ``` bash
 INFO:chameleonlogger:['servers', {'status': 'success', 'username': 'test', 'ip': '127.0.0.1', 'server': 'ssh_server', 'action': 'login', 'password': 'test', 'port': 38696}]
 ```
@@ -59,15 +57,12 @@ username= String E.g. Test
 password= String E.g. Test
 mocking= Boolean or String E.g OpenSSH 7.0
 logs= String E.g db, terminal or all
-
 qsshserver = QSSHServer(ip="0.0.0.0",port=400,username="Test",password="Test",mocking="OpenSSH 7.0",logs="terminal")
 qsshserver.run_server()
 ```
-
 ``` bash
 ssh test@127.0.0.1 -p 400
 ```
-
 ``` bash
 INFO:chameleonlogger:['servers', {'status': 'success', 'username': 'test', 'ip': '127.0.0.1', 'server': 'ssh_server', 'action': 'login', 'password': 'test', 'port': 38699}]
 ```
