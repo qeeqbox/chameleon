@@ -29,13 +29,13 @@ Customizable honeypots (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP
 - ~~Refactoring logging~~
 - ~~Fixing logger~~
 - Code Cleanup
+- Switching some servers to twisted 
 - Adding graceful connection close (error response)
 - Implementing the rest of servers
 - Adding some detection logic to the sinffer
 - Adding a control panel
 
-## Example
-#### Easy to run, configure, edit and test (Default configuration)
+## SSH Server and Client Example (Easy to run, configure, edit and test)
 ```python
 from ssh_server import QSSHServer
 qsshserver = QSSHServer()
@@ -50,7 +50,8 @@ ssh test@127.0.0.1
 INFO:chameleonlogger:['servers', {'status': 'success', 'username': 'test', 'ip': '127.0.0.1', 'server': 'ssh_server', 'action': 'login', 'password': 'test', 'port': 38696}]
 ```
 
-#### Or, edit the configuration (SSH server example)
+#### Or
+
 ```python
 ip= String E.g. 0.0.0.0
 port= Int E.g. 400
