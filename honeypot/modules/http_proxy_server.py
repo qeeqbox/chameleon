@@ -9,7 +9,7 @@ from psutil import process_iter
 from signal import SIGTERM
 from multiprocessing import Process
 from requests import get
-from logging import DEBUG, Handler, WARNING, getLogger,basicConfig
+from logging import DEBUG, basicConfig, getLogger
 from twisted.python import log as tlog
 from os import path
 from tempfile import gettempdir,_get_candidate_names

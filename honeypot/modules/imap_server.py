@@ -8,9 +8,8 @@ from psutil import process_iter
 from signal import SIGTERM
 from time import sleep
 from multiprocessing import Process
-from logging import DEBUG, Handler, WARNING, getLogger,basicConfig
+from logging import DEBUG, basicConfig, getLogger
 from twisted import cred
-from sys import stdout
 from imaplib import IMAP4
 from twisted.python import log as tlog
 from os import path

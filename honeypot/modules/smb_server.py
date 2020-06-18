@@ -10,7 +10,7 @@ from multiprocessing import Process
 from psutil import process_iter
 from signal import SIGTERM
 from time import sleep
-from logging import DEBUG, Handler, WARNING, getLogger,basicConfig
+from logging import DEBUG, basicConfig, getLogger
 
 class QSMBServer():
 	def __init__(self,ip=None,port=None,username=None,password=None,mocking=False,logs=None):

@@ -6,12 +6,10 @@ from psutil import process_iter
 from signal import SIGTERM
 from time import sleep
 from multiprocessing import Process
-from Crypto.Cipher import DES
-from binascii import unhexlify
-from logging import DEBUG, Handler, WARNING, getLogger,basicConfig
-from struct import pack, unpack
+from logging import DEBUG, basicConfig, getLogger
+from struct import unpack
 from itertools import izip
-from psycopg2 import sql,connect
+from psycopg2 import connect
 from twisted.python import log as tlog
 from os import path
 from tempfile import gettempdir,_get_candidate_names

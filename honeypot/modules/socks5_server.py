@@ -1,19 +1,12 @@
 __G__ = "(G)bd249ce4"
 
-from pyftpdlib import servers
-from pyftpdlib.handlers import FTPHandler
-from pyftpdlib.authorizers import DummyAuthorizer
-from tempfile import mkdtemp
-from shutil import rmtree
-from random import choice
 from multiprocessing import Process
-from ftplib import FTP
 from psutil import process_iter
 from signal import SIGTERM
 from time import sleep
-from logging import DEBUG, Handler, WARNING, getLogger,basicConfig
+from logging import DEBUG, basicConfig, getLogger
 from socketserver import TCPServer, StreamRequestHandler, ThreadingMixIn
-from struct import unpack,pack
+from struct import unpack
 from requests import get
 
 class QSOCKS5Server():

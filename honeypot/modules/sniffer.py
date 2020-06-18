@@ -8,7 +8,7 @@ from binascii import hexlify
 from multiprocessing import Process
 from re import search as rsearch
 from re import compile as rcompile
-from logging import DEBUG, Handler, WARNING, getLogger,basicConfig
+from logging import DEBUG, basicConfig, getLogger
 
 class QSniffer():
 	def __init__(self,filter=None,interface=None,logs=None):

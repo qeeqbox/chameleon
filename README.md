@@ -119,6 +119,10 @@ pip install -U requests[socks]
 pip install -Iv rsa==4.0
 ```
 
+## Changes
+- 2020.V.01.02 switched http and https servers to twisted
+- 2020.V.01.02 Fixed changing ip in grafana interface
+
 ## Resources
 - Twisted documentation
 - Impacket documentation

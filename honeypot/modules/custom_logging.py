@@ -3,7 +3,7 @@ __G__ = "(G)bd249ce4"
 from postgres_conn import postgres_class
 from json import JSONEncoder, dumps
 from collections import Mapping
-from logging import DEBUG, Handler, WARNING, getLogger
+from logging import Handler
 from sys import stdout
 
 class ComplexEncoder(JSONEncoder):

@@ -1,6 +1,6 @@
 from time import sleep
 from sys import stdout
-from logging import DEBUG, Handler, WARNING, getLogger,basicConfig
+from logging import DEBUG, getLogger
 from subprocess import Popen
 from netifaces import ifaddresses,AF_INET,AF_LINK
 print('Your IP: {}'.format(ifaddresses('eth0')[AF_INET][0]['addr'].encode('utf-8')))
