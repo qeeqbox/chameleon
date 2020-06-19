@@ -134,6 +134,11 @@ pip install -Iv rsa==4.0
 - SOCK5 (Server using Twisted)
 - TELNET (Server using Twisted)
 - Postgres (Emulator using Twisted)
+- Mysql (Coming..)
+- Elasticsearch (Coming..)
+- Redis (Coming..)
+- Oracle (Coming..)
+- ldap (maybe)
 
 ## Changes
 - 2020.V.01.03 switched ftp servers to twisted
