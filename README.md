@@ -64,9 +64,9 @@ To mointor the logs
 open localhost:3000 (username and passowrd: admin)
 ```
 
-## SSH Server and Client Example (Easy to run, configure, edit and test)
+#### Or, import your desired server as object (SSH Server)
 ```bash
-copy ssh_server.py to your test folder
+copy ssh_server.py to your folder
 ```
 ```python
 from ssh_server import QSSHServer
