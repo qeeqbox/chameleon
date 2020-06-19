@@ -26,16 +26,6 @@ Customizable honeypots (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP
 - Easy automation and can be deployed on AWS ec2
 - & More features to Explore
 
-## Roadmap
-- ~~Refactoring logging~~
-- ~~Fixing logger~~
-- Code Cleanup
-- Switching some servers to twisted 
-- Adding graceful connection close (error response)
-- Implementing the rest of servers
-- Adding some detection logic to the sinffer
-- Adding a control panel
-
 ## Install and run
 #### On ubuntu 18 or 19 System (Auto-configure dev)
 ```bash
@@ -144,6 +134,16 @@ pip install -Iv rsa==4.0
 - 2020.V.01.03 switched ftp servers to twisted
 - 2020.V.01.02 switched http and https servers to twisted
 - 2020.V.01.02 Fixed changing ip in grafana interface
+
+## Roadmap
+- ~~Refactoring logging~~
+- ~~Fixing logger~~
+- Code Cleanup
+- Switching some servers to twisted 
+- Adding graceful connection close (error response)
+- Implementing the rest of servers
+- Adding some detection logic to the sinffer
+- Adding a control panel
 
 ## Resources
 - Twisted documentation
