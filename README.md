@@ -119,6 +119,22 @@ pip install -U requests[socks]
 pip install -Iv rsa==4.0
 ```
 
+## Current Servers/Emulators
+- DNS (Server using Twisted)
+- HTTP Proxy (Server using Twisted)
+- HTTP (Server using Twisted)
+- HTTPS (Server using Twisted)
+- SSH (Server using Twisted)
+- POP3 (Server using Twisted)
+- IMAP (Server using Twisted)
+- STMP (Server using smtpd)
+- RDP (Server using Twisted)
+- VNC (Emulator using Twisted)
+- SMB (Server using impacket)
+- SOCK5 (Server using Twisted)
+- TELNET (Server using Twisted)
+- Postgres (Emulator using Twisted)
+
 ## Changes
 - 2020.V.01.03 switched ftp servers to twisted
 - 2020.V.01.02 switched http and https servers to twisted
