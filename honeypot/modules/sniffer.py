@@ -112,7 +112,6 @@ class QSniffer():
 if __name__ == "__main__":
 	from server_options import server_arguments
 	parsed = server_arguments()
-	print(parsed)
 	if parsed.docker or parsed.aws or parsed.custom:
 		qsniffer = QSniffer(filter=parsed.filter,interface=parsed.interface,logs=parsed.logs)
 		qsniffer.run_sniffer()

@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 1,
-  "iteration": 1592280898622,
+  "iteration": 1592715537860,
   "links": [],
   "panels": [
     {
@@ -2119,7 +2119,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%imap_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%redis_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
           "refId": "A",
           "select": [
             [
@@ -2143,7 +2143,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "POP3 Login",
+      "title": "Redis Login",
       "type": "stat"
     },
     {
@@ -2377,7 +2377,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__time(date),\n  (data->'sniffer'->>'memory')::float as sniffer,\n  (data->'ftp_server'->>'memory')::float as ftp,\n  (data->'dns_server'->>'memory')::float as dns,\n  (data->'http_server'->>'memory')::float as http,\n  (data->'https_server'->>'memory')::float as https,\n  (data->'http_proxy_server'->>'memory')::float as http,\n  (data->'pop3_server'->>'memory')::float as pop3,\n  (data->'imap_server'->>'memory')::float as imap,\n  (data->'rdp_server'->>'memory')::float as rdp,\n  (data->'smb_server'->>'memory')::float as smb,\n  (data->'smtp_server'->>'memory')::float as smtp,\n  (data->'vnc_server'->>'memory')::float as vnc,\n  (data->'ssh_server'->>'memory')::float as ssh,\n  (data->'socks5_server'->>'memory')::float as socks5,\n  (data->'telnet_server'->>'memory')::float as telnet,\n  (data->'postgres_server'->>'memory')::float as postgres\nFROM\n  system_table\n  system_table\nWHERE\n  $__timeFilter(date) ",
+          "rawSql": "SELECT\n  $__time(date),\n  (data->'sniffer'->>'memory')::float as sniffer,\n  (data->'ftp_server'->>'memory')::float as ftp,\n  (data->'dns_server'->>'memory')::float as dns,\n  (data->'http_server'->>'memory')::float as http,\n  (data->'https_server'->>'memory')::float as https,\n  (data->'http_proxy_server'->>'memory')::float as http,\n  (data->'pop3_server'->>'memory')::float as pop3,\n  (data->'imap_server'->>'memory')::float as imap,\n  (data->'rdp_server'->>'memory')::float as rdp,\n  (data->'smb_server'->>'memory')::float as smb,\n  (data->'smtp_server'->>'memory')::float as smtp,\n  (data->'vnc_server'->>'memory')::float as vnc,\n  (data->'ssh_server'->>'memory')::float as ssh,\n  (data->'socks5_server'->>'memory')::float as socks5,\n  (data->'telnet_server'->>'memory')::float as telnet,\n  (data->'redis_server'->>'memory')::float as redis,\n  (data->'postgres_server'->>'memory')::float as postgres\nFROM\n  system_table\n  system_table\nWHERE\n  $__timeFilter(date) ",
           "refId": "A",
           "select": [
             [
@@ -2639,7 +2639,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__time(date),\n  (data->'sniffer'->>'cpu')::float as sniffer,\n  (data->'ftp_server'->>'cpu')::float as ftp,\n  (data->'dns_server'->>'cpu')::float as dns,\n  (data->'http_server'->>'cpu')::float as http,\n  (data->'https_server'->>'cpu')::float as https,\n  (data->'http_proxy_server'->>'cpu')::float as http,\n  (data->'pop3_server'->>'cpu')::float as pop3,\n  (data->'imap_server'->>'cpu')::float as imap,\n  (data->'rdp_server'->>'cpu')::float as rdp,\n  (data->'smb_server'->>'cpu')::float as smb,\n  (data->'smtp_server'->>'cpu')::float as smtp,\n  (data->'vnc_server'->>'cpu')::float as vnc,\n  (data->'ssh_server'->>'cpu')::float as ssh,\n  (data->'socks5_server'->>'cpu')::float as socks5,\n  (data->'telnet_server'->>'cpu')::float as telnet,\n  (data->'postgres_server'->>'cpu')::float as postgres\nFROM\n  system_table\nWHERE\n  $__timeFilter(date) ",
+          "rawSql": "SELECT\n  $__time(date),\n  (data->'sniffer'->>'cpu')::float as sniffer,\n  (data->'ftp_server'->>'cpu')::float as ftp,\n  (data->'dns_server'->>'cpu')::float as dns,\n  (data->'http_server'->>'cpu')::float as http,\n  (data->'https_server'->>'cpu')::float as https,\n  (data->'http_proxy_server'->>'cpu')::float as http,\n  (data->'pop3_server'->>'cpu')::float as pop3,\n  (data->'imap_server'->>'cpu')::float as imap,\n  (data->'rdp_server'->>'cpu')::float as rdp,\n  (data->'smb_server'->>'cpu')::float as smb,\n  (data->'smtp_server'->>'cpu')::float as smtp,\n  (data->'vnc_server'->>'cpu')::float as vnc,\n  (data->'ssh_server'->>'cpu')::float as ssh,\n  (data->'socks5_server'->>'cpu')::float as socks5,\n  (data->'telnet_server'->>'cpu')::float as telnet,\n  (data->'redis_server'->>'cpu')::float as redis,\n  (data->'postgres_server'->>'cpu')::float as postgres\nFROM\n  system_table\nWHERE\n  $__timeFilter(date) ",
           "refId": "A",
           "select": [
             [
@@ -2738,18 +2738,18 @@
       "type": "logs"
     }
   ],
-  "refresh": "5s",
+  "refresh": false,
   "schemaVersion": 25,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
-        "allValue": null,
+        "allValue": "\"\"",
         "current": {
-          "selected": true,
-          "text": "172.19.0.4",
-          "value": "172.19.0.4"
+          "selected": false,
+          "text": "172.19.0.3",
+          "value": "172.19.0.3"
         },
         "datasource": "chameleon",
         "definition": "SELECT\n  (data->>'src_ip')\nFROM\n  sniffer_table\nLIMIT 1",
@@ -2758,15 +2758,9 @@
         "label": "IP",
         "multi": false,
         "name": "IP",
-        "options": [
-          {
-            "selected": true,
-            "text": "172.19.0.4",
-            "value": "172.19.0.4"
-          }
-        ],
+        "options": [],
         "query": "SELECT\n  (data->>'src_ip')\nFROM\n  sniffer_table\nLIMIT 1",
-        "refresh": 0,
+        "refresh": 1,
         "regex": "/'(.*)'/",
         "skipUrlSync": false,
         "sort": 0,
@@ -2779,7 +2773,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {

@@ -18,6 +18,10 @@ dev_project () {
 	sudo docker-compose -f docker-compose-dev.yml up --build
 }
 
+stop_containers () {
+	sudo docker stop $(sudo docker ps -aq)
+} 
+
 deploy_aws_project () {
 	echo "Will be added later on"
 }
@@ -33,13 +37,15 @@ auto_configure_dev () {
 }
 
 if [[ "$1" == "auto_test" ]]; then
+	stop_containers
 	auto_configure_test
-	exit 
+	stop_containers 
 fi
 
 if [[ "$1" == "auto_dev" ]]; then
+	stop_containers
 	auto_configure_dev
-	exit 
+	stop_containers 
 fi
 
 while read -p "`echo -e '\nChoose an option:\n1) Setup requirements (docker, docker-compose)\n2) Test the project (All servers and Sniffer)\n8) Run auto dev\n9) Run auto test\n>> '`"; do

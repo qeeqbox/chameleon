@@ -146,9 +146,9 @@ if __name__ == "__main__":
 	parsed = server_arguments()
 
 	if parsed.docker or parsed.aws or parsed.custom:
-		QVNCServer = QVNCServer(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password,mocking=parsed.mocking,logs=parsed.logs)
-		QVNCServer.run_server()
+		qvncserver = QVNCServer(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password,mocking=parsed.mocking,logs=parsed.logs)
+		qvncserver.run_server()
 
 	if parsed.test:
-		QVNCServer = QVNCServer(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password,mocking=parsed.mocking,logs=parsed.logs)
-		QVNCServer.test_server(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password)
+		qvncserver = QVNCServer(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password,mocking=parsed.mocking,logs=parsed.logs)
+		qvncserver.test_server(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password)

@@ -12,6 +12,7 @@ from modules.pop3_server import QPOP3Server
 from modules.socks5_server import QSOCKS5Server
 from modules.postgres_server import QPostgresServer
 from modules.imap_server import QIMAPServer
+from modules.redis_server import QRedisServer
 from modules.server_options import server_arguments
 from socket import gethostbyname
 
@@ -62,3 +63,6 @@ qsocks5server.test_server(ip=parsed.ip,port=parsed.port,username=parsed.username
 print("Testing QPostgresServer")
 qpostgresserver = QPostgresServer(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password,mocking=parsed.mocking,logs=parsed.logs)
 qpostgresserver.test_server(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password)
+print("Testing QRedisServer")
+qredisserver = QRedisServer(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password,mocking=parsed.mocking,logs=parsed.logs)
+qredisserver.test_server(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password)
