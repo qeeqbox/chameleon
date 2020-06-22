@@ -165,4 +165,3 @@ By using this framework, you are accepting the license terms of each package lis
 
 ## Disclaimer\Notes
 - Almost all servers and emulators are stripped-down - You can adjust that as needed based on the client
-- If you are interested in adopting some features in your project - please mention this source somewhere in your project
