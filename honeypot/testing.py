@@ -13,6 +13,7 @@ from modules.socks5_server import QSOCKS5Server
 from modules.postgres_server import QPostgresServer
 from modules.imap_server import QIMAPServer
 from modules.redis_server import QRedisServer
+from modules.mysql_server import QMysqlServer
 from modules.server_options import server_arguments
 from socket import gethostbyname
 
@@ -66,3 +67,6 @@ qpostgresserver.test_server(ip=parsed.ip,port=parsed.port,username=parsed.userna
 print("Testing QRedisServer")
 qredisserver = QRedisServer(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password,mocking=parsed.mocking,logs=parsed.logs)
 qredisserver.test_server(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password)
+print("Testing QRedisServer")
+qmysqlserver = QMysqlServer(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password,mocking=parsed.mocking,logs=parsed.logs)
+qmysqlserver.test_server(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password)

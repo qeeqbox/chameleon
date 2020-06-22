@@ -117,6 +117,8 @@ pip install -Iv rsa==4.0
 - ldap (maybe)
 
 ## Changes
+- 2020.V.01.05 added mysql
+- 2020.V.01.04 added redis
 - 2020.V.01.03 switched ftp servers to twisted
 - 2020.V.01.02 switched http and https servers to twisted
 - 2020.V.01.02 Fixed changing ip in grafana interface

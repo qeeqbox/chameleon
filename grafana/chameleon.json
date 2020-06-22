@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 1,
-  "iteration": 1592715537860,
+  "iteration": 1592806145902,
   "links": [],
   "panels": [
     {
@@ -1758,6 +1758,134 @@
       "type": "stat"
     },
     {
+      "datasource": "chameleon",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "success"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Success"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "failed"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Failed"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 4,
+        "y": 9
+      },
+      "id": 33,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.3",
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%mysql_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "MySQL Login",
+      "type": "stat"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -2377,7 +2505,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__time(date),\n  (data->'sniffer'->>'memory')::float as sniffer,\n  (data->'ftp_server'->>'memory')::float as ftp,\n  (data->'dns_server'->>'memory')::float as dns,\n  (data->'http_server'->>'memory')::float as http,\n  (data->'https_server'->>'memory')::float as https,\n  (data->'http_proxy_server'->>'memory')::float as http,\n  (data->'pop3_server'->>'memory')::float as pop3,\n  (data->'imap_server'->>'memory')::float as imap,\n  (data->'rdp_server'->>'memory')::float as rdp,\n  (data->'smb_server'->>'memory')::float as smb,\n  (data->'smtp_server'->>'memory')::float as smtp,\n  (data->'vnc_server'->>'memory')::float as vnc,\n  (data->'ssh_server'->>'memory')::float as ssh,\n  (data->'socks5_server'->>'memory')::float as socks5,\n  (data->'telnet_server'->>'memory')::float as telnet,\n  (data->'redis_server'->>'memory')::float as redis,\n  (data->'postgres_server'->>'memory')::float as postgres\nFROM\n  system_table\n  system_table\nWHERE\n  $__timeFilter(date) ",
+          "rawSql": "SELECT\n  $__time(date),\n  (data->'sniffer'->>'memory')::float as sniffer,\n  (data->'ftp_server'->>'memory')::float as ftp,\n  (data->'dns_server'->>'memory')::float as dns,\n  (data->'http_server'->>'memory')::float as http,\n  (data->'https_server'->>'memory')::float as https,\n  (data->'http_proxy_server'->>'memory')::float as http,\n  (data->'pop3_server'->>'memory')::float as pop3,\n  (data->'imap_server'->>'memory')::float as imap,\n  (data->'rdp_server'->>'memory')::float as rdp,\n  (data->'smb_server'->>'memory')::float as smb,\n  (data->'smtp_server'->>'memory')::float as smtp,\n  (data->'vnc_server'->>'memory')::float as vnc,\n  (data->'ssh_server'->>'memory')::float as ssh,\n  (data->'socks5_server'->>'memory')::float as socks5,\n  (data->'telnet_server'->>'memory')::float as telnet,\n  (data->'redis_server'->>'memory')::float as redis,\n  (data->'mysql_server'->>'memory')::float as mysql,\n  (data->'postgres_server'->>'memory')::float as postgres\nFROM\n  system_table\n  system_table\nWHERE\n  $__timeFilter(date) ",
           "refId": "A",
           "select": [
             [
@@ -2639,7 +2767,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__time(date),\n  (data->'sniffer'->>'cpu')::float as sniffer,\n  (data->'ftp_server'->>'cpu')::float as ftp,\n  (data->'dns_server'->>'cpu')::float as dns,\n  (data->'http_server'->>'cpu')::float as http,\n  (data->'https_server'->>'cpu')::float as https,\n  (data->'http_proxy_server'->>'cpu')::float as http,\n  (data->'pop3_server'->>'cpu')::float as pop3,\n  (data->'imap_server'->>'cpu')::float as imap,\n  (data->'rdp_server'->>'cpu')::float as rdp,\n  (data->'smb_server'->>'cpu')::float as smb,\n  (data->'smtp_server'->>'cpu')::float as smtp,\n  (data->'vnc_server'->>'cpu')::float as vnc,\n  (data->'ssh_server'->>'cpu')::float as ssh,\n  (data->'socks5_server'->>'cpu')::float as socks5,\n  (data->'telnet_server'->>'cpu')::float as telnet,\n  (data->'redis_server'->>'cpu')::float as redis,\n  (data->'postgres_server'->>'cpu')::float as postgres\nFROM\n  system_table\nWHERE\n  $__timeFilter(date) ",
+          "rawSql": "SELECT\n  $__time(date),\n  (data->'sniffer'->>'cpu')::float as sniffer,\n  (data->'ftp_server'->>'cpu')::float as ftp,\n  (data->'dns_server'->>'cpu')::float as dns,\n  (data->'http_server'->>'cpu')::float as http,\n  (data->'https_server'->>'cpu')::float as https,\n  (data->'http_proxy_server'->>'cpu')::float as http,\n  (data->'pop3_server'->>'cpu')::float as pop3,\n  (data->'imap_server'->>'cpu')::float as imap,\n  (data->'rdp_server'->>'cpu')::float as rdp,\n  (data->'smb_server'->>'cpu')::float as smb,\n  (data->'smtp_server'->>'cpu')::float as smtp,\n  (data->'vnc_server'->>'cpu')::float as vnc,\n  (data->'ssh_server'->>'cpu')::float as ssh,\n  (data->'socks5_server'->>'cpu')::float as socks5,\n  (data->'telnet_server'->>'cpu')::float as telnet,\n  (data->'redis_server'->>'cpu')::float as redis,\n  (data->'mysql_server'->>'cpu')::float as mysql,\n  (data->'postgres_server'->>'cpu')::float as postgres\nFROM\n  system_table\nWHERE\n  $__timeFilter(date) ",
           "refId": "A",
           "select": [
             [
@@ -2747,7 +2875,7 @@
       {
         "allValue": "\"\"",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "172.19.0.3",
           "value": "172.19.0.3"
         },

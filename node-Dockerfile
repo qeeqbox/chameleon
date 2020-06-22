@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -y && apt-get install -y iptables-persistent tcpdump nmap iputils-ping python python-pip python-psycopg2 lsof psmisc dnsutils curl ftp freerdp-x11 smbclient ssh telnet xtightvncviewer xvfb
-RUN pip install scapy netifaces pyftpdlib sqlalchemy pyyaml paramiko impacket twisted rdpy psutil pyping requests redis
+RUN pip install scapy netifaces pyftpdlib sqlalchemy pyyaml paramiko impacket twisted rdpy psutil pyping requests redis mysql-connector-python
 RUN pip install -U requests[socks]
 RUN pip install -Iv rsa==4.0
 COPY honeypot ./honeypot
