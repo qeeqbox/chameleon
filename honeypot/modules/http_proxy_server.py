@@ -7,27 +7,31 @@ from BaseHTTPServer import BaseHTTPRequestHandler
 from StringIO import StringIO
 from psutil import process_iter
 from signal import SIGTERM
-from multiprocessing import Process
 from requests import get
 from logging import DEBUG, basicConfig, getLogger
 from twisted.python import log as tlog
 from os import path
 from tempfile import gettempdir,_get_candidate_names
+from subprocess import Popen
+from socket import socket as ssocket
+from socket import AF_INET,SOCK_STREAM
 
 class QHTTPPoxyServer():
 	def __init__(self,ip=None,port=None,mocking=None,logs=None):
 		self.ip= ip or '0.0.0.0'
 		self.port = port or 8080 
-		self.mocking = mocking or None
-		self.setup_logger(logs)
+		self.mocking = mocking or ''
+		self.process = None
+		self._logs = logs
+		self.setup_logger(self._logs)
 		self.disable_logger()
 
 	def disable_logger(self):
 		temp_name = path.join(gettempdir(), next(_get_candidate_names()))
-		tlog.startLogging(open(temp_name, "w"), setStdout=False)
+		tlog.startLogging(open(temp_name, 'w'), setStdout=False)
 
 	def setup_logger(self,logs):
-		self.logs = getLogger("chameleonlogger")
+		self.logs = getLogger('chameleonlogger')
 		self.logs.setLevel(DEBUG)
 		if logs:
 			from custom_logging import CustomHandler
@@ -98,21 +102,7 @@ class QHTTPPoxyServer():
 		reactor.listenTCP(port=self.port, factory=factory, interface=self.ip)
 		reactor.run()
 
-	def run_server(self,process=False):
-		self.close_port()
-		if process:
-			self.proxy_server = Process(name='QHTTPPoxyServer_', target=self.http_proxy_server_main)
-			self.proxy_server.start()
-		else:
-			self.http_proxy_server_main()
-
-	def kill_server(self,process=False):
-		self.close_port()
-		if process:
-			self.proxy_server.terminate()
-			self.proxy_server.join()
-
-	def test_server(self,ip,port,domain):
+	def test_server(self,ip=None,port=None,domain=None):
 		try:
 			_ip = ip or self.ip
 			_port = port or self.port
@@ -121,24 +111,38 @@ class QHTTPPoxyServer():
 		except Exception:
 			pass
 
-	def close_port(self):
-		for process in process_iter():
-			try:
-				for conn in process.connections(kind='inet'):
-					if self.port == conn.laddr.port:
-						process.send_signal(SIGTERM)
-						process.kill()
-			except:
-				pass
+	def run_server(self,process=False):
+		if process:
+			if self.close_port():
+				self.process = Popen(['python',path.realpath(__file__),'--custom','--ip',str(self.ip),'--port',str(self.port),'--mocking',str(self.mocking),'--logs',str(self._logs)])
+		else:
+			self.http_proxy_server_main()
 
-if __name__ == "__main__":
+	def kill_server(self,process=False):
+		if self.process != None:
+			self.process.kill()
+
+	def close_port(self):
+		sock = ssocket(AF_INET,SOCK_STREAM)
+		sock.settimeout(2) 
+		if sock.connect_ex((self.ip,self.port)) == 0:
+			for process in process_iter():
+				try:
+					for conn in process.connections(kind='inet'):
+						if self.port == conn.laddr.port:
+							process.send_signal(SIGTERM)
+							process.kill()
+				except:
+					pass
+		if sock.connect_ex((self.ip,self.port)) != 0:
+			return True
+		else:
+			self.logs.error(['errors',{'server':'http_proxy_server','error':'port_open','type':'Port {} still open..'.format(self.ip)}])
+			return False
+
+if __name__ == '__main__':
 	from server_options import server_arguments
 	parsed = server_arguments()
-
 	if parsed.docker or parsed.aws or parsed.custom:
 		qhttpproxyserver = QHTTPPoxyServer(ip=parsed.ip,port=parsed.port,mocking=parsed.mocking,logs=parsed.logs)
 		qhttpproxyserver.run_server()
-
-	if parsed.test:
-		qhttpproxyserver = QHTTPPoxyServer(ip=parsed.ip,port=parsed.port,mocking=parsed.mocking,logs=parsed.logs)
-		qhttpproxyserver.test_server(ip=parsed.ip,port=parsed.port,domain=parsed.domain)

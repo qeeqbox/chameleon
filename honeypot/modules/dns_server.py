@@ -1,6 +1,5 @@
-__G__ = "(G)bd249ce4"
+__G__ = '(G)bd249ce4'
 
-from multiprocessing import Process
 from twisted.names import dns, error,client
 from twisted.names.server import DNSServerFactory
 from twisted.internet import defer, reactor
@@ -13,21 +12,26 @@ from logging import DEBUG, basicConfig, getLogger
 from twisted.python import log as tlog
 from os import path
 from tempfile import gettempdir,_get_candidate_names
+from subprocess import Popen
+from socket import socket as ssocket
+from socket import AF_INET,SOCK_STREAM
 
 class QDNSServer():
 	def __init__(self,ip=None,port=None,resolver_addresses=None,logs=None):
 		self.ip= ip or '0.0.0.0'
 		self.port = port or 53 
-		self.resolver_addresses = resolver_addresses or [("8.8.8.8", 53)]
-		self.setup_logger(logs)
+		self.resolver_addresses = resolver_addresses or [('8.8.8.8', 53)]
+		self.process = None
+		self._logs = logs
+		self.setup_logger(self._logs)
 		self.disable_logger()
 
 	def disable_logger(self):
 		temp_name = path.join(gettempdir(), next(_get_candidate_names()))
-		tlog.startLogging(open(temp_name, "w"), setStdout=False)
+		tlog.startLogging(open(temp_name, 'w'), setStdout=False)
 
 	def setup_logger(self,logs):
-		self.logs = getLogger("chameleonlogger")
+		self.logs = getLogger('chameleonlogger')
 		self.logs.setLevel(DEBUG)
 		if logs:
 			from custom_logging import CustomHandler
@@ -37,6 +41,7 @@ class QDNSServer():
 
 	def dns_server_main(self):
 		_q_s = self
+
 		class CustomCilentResolver(client.Resolver):
 			def queryUDP(self, queries, timeout=2):
 				res = client.Resolver.queryUDP(self, queries, timeout)
@@ -51,9 +56,9 @@ class QDNSServer():
 				try:
 					for items in response:
 						for item in items:
-							_q_s.logs.info(["servers",{'server':'dns_server','action':'query','ip':address[0],'port':address[1],'payload':item.payload}])
+							_q_s.logs.info(['servers',{'server':'dns_server','action':'query','ip':address[0],'port':address[1],'payload':item.payload}])
 				except Exception as e:
-					_q_s.logs.error(["errors",{'server':'dns_server','error':'gotResolverResponse',"type":"error -> "+repr(e)}])
+					_q_s.logs.error(['errors',{'server':'dns_server','error':'gotResolverResponse','type':'error -> '+repr(e)}])
 				return DNSServerFactory.gotResolverResponse(*args)
 		
 
@@ -65,25 +70,22 @@ class QDNSServer():
 		reactor.run()
 
 	def run_server(self,process=False):
-		self.close_port()
 		if process:
-			self.ftp_server = Process(name='QFTPServer_', target=self.ftp_server_main)
-			self.ftp_server.start()
+			if self.close_port():
+				self.process = Popen(['python',path.realpath(__file__),'--custom','--ip',str(self.ip),'--port',str(self.port),'--logs',str(self._logs)])
 		else:
 			self.dns_server_main()
 
 	def kill_server(self,process=False):
-		self.close_port()
-		if process:
-			self.ftp_server.terminate()
-			self.ftp_server.join()
+		if self.process != None:
+			self.process.kill()
 
-	def test_server(self,ip,port,domain):
+	def test_server(self,ip=None,port=None,domain=None):
 		try:
 			sleep(2)
 			_ip = ip or self.ip
 			_port = port or self.port 
-			_domain = domain or "yahoo.com"
+			_domain = domain or 'yahoo.com'
 			proc=Popen(ssplit('dig -p {} @{} {} A +short'.format(_port,_ip,_domain)),stdout=PIPE)
 			out,err=proc.communicate()
 			raise ValueError(out)
@@ -91,23 +93,26 @@ class QDNSServer():
 			pass
 
 	def close_port(self):
-		for process in process_iter():
-			try:
-				for conn in process.connections(kind='inet'):
-					if self.port == conn.laddr.port:
-						process.send_signal(SIGTERM)
-						process.kill()
-			except:
-				pass
+		sock = ssocket(AF_INET,SOCK_STREAM)
+		sock.settimeout(2) 
+		if sock.connect_ex((self.ip,self.port)) == 0:
+			for process in process_iter():
+				try:
+					for conn in process.connections(kind='inet'):
+						if self.port == conn.laddr.port:
+							process.send_signal(SIGTERM)
+							process.kill()
+				except:
+					pass
+		if sock.connect_ex((self.ip,self.port)) != 0:
+			return True
+		else:
+			self.logs.error(['errors',{'server':'dns_server','error':'port_open','type':'Port {} still open..'.format(self.ip)}])
+			return False
 
-if __name__ == "__main__":
+if __name__ == '__main__':
 	from server_options import server_arguments
 	parsed = server_arguments()
-
 	if parsed.docker or parsed.aws or parsed.custom:
 		qdnsserver = QDNSServer(ip=parsed.ip,port=parsed.port,resolver_addresses=parsed.resolver_addresses,logs=parsed.logs)
 		qdnsserver.run_server()
-
-	if parsed.test:
-		qdnsserver = QDNSServer(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password,mocking=parsed.mocking,logs=parsed.logs)
-		qdnsserver.test_server(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password)

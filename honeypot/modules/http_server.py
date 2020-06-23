@@ -1,7 +1,6 @@
 __G__ = "(G)bd249ce4"
 
 from cgi import FieldStorage
-from multiprocessing import Process
 from psutil import process_iter
 from signal import SIGTERM
 from requests import get,post
@@ -9,11 +8,15 @@ from requests.packages.urllib3 import disable_warnings
 from time import sleep
 from logging import DEBUG, basicConfig, getLogger
 from os import path
-from tempfile import gettempdir,_get_candidate_names
 from twisted.internet import reactor
 from twisted.web.server import Site
 from twisted.web.resource import Resource
 from random import choice
+from twisted.python import log as tlog
+from tempfile import gettempdir,_get_candidate_names
+from subprocess import Popen
+from socket import socket as ssocket
+from socket import AF_INET,SOCK_STREAM
 
 disable_warnings()
 
@@ -23,14 +26,21 @@ class QHTTPServer():
 		self.port = port or 80
 		self.username = username or "test"
 		self.password = password or "test"
-		self.mocking = mocking or None
+		self.mocking = mocking or ''
 		self.key = path.join(gettempdir(), next(_get_candidate_names()))
 		self.cert = path.join(gettempdir(), next(_get_candidate_names()))
 		self.random_servers = ['Apache','nginx','Microsoft-IIS/7.5','Microsoft-HTTPAPI/2.0','Apache/2.2.15','SmartXFilter','Microsoft-IIS/8.5','Apache/2.4.6','Apache-Coyote/1.1','Microsoft-IIS/7.0','Apache/2.4.18','AkamaiGHost','Apache/2.2.25','Microsoft-IIS/10.0','Apache/2.2.3','nginx/1.12.1','Apache/2.4.29','cloudflare','Apache/2.2.22']
-		self.setup_logger(logs)
+		self.process = None
+		self._logs = logs
+		self.setup_logger(self._logs)
+		self.disable_logger()
+
+	def disable_logger(self):
+		temp_name = path.join(gettempdir(), next(_get_candidate_names()))
+		tlog.startLogging(open(temp_name, 'w'), setStdout=False)
 
 	def setup_logger(self,logs):
-		self.logs = getLogger("chameleonlogger")
+		self.logs = getLogger('chameleonlogger')
 		self.logs.setLevel(DEBUG)
 		if logs:
 			from custom_logging import CustomHandler
@@ -44,15 +54,63 @@ class QHTTPServer():
 		class MainResource(Resource):
 
 			isLeaf = True
-			login_file = b""
-			home_file = b""
+
+			home_file = b'''
+<!DOCTYPE html>
+<html>
+   <head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+      <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+      <title>Login</title>
+      <style>
+         body,html{height: 100%;text-align: center;},
+      </style>
+   </head>
+   <body>
+      <div class="container-fluid h-100">
+         <div class="row justify-content-center h-100 align-items-center">
+            <div class="col col-xl-3">
+               <b>We'll back soon..</b> 
+            </div>
+         </div>
+      </div>
+   </body>
+</html>'''
+
+			login_file = b'''<!DOCTYPE html>
+<html>
+   <head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+      <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+      <title>Login</title>
+      <style>body,html {height: 100%;}</style>
+   </head>
+   <body>
+      <div class="container-fluid h-100">
+         <div class="row justify-content-center h-100 align-items-center">
+            <div class="col col-xl-3">
+               <form id="login" action="" method="post">
+                  <div class="form-group">
+                     <input class="form-control form-control-sm" name="username" type="text" placeholder="username" id="username">
+                  </div>
+                  <div class="form-group">
+                     <input class="form-control form-control-sm" name="password" type="password" placeholder="password" id="password">
+                  </div>
+                  <div class="form-group">
+                     <button class="btn btn-default btn-sm btn-block" type="submit">login</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
+'''
 			server = ""
-			if path.exists('templates'):
-				login_file = open('templates/login.html','rb').read()
-				home_file = open('templates/home.html','rb').read()
-			elif path.exists('modules/templates'):
-				login_file = open('modules/templates/login.html','rb').read()
-				home_file = open('modules/templates/home.html','rb').read()
+
+
 			if isinstance(_q_s.mocking, bool):
 				if _q_s.mocking == True:
 					server = choice(_q_s.random_servers)
@@ -94,21 +152,7 @@ class QHTTPServer():
 		reactor.listenTCP(self.port, Site(MainResource()))
 		reactor.run()
 
-	def run_server(self,process=False):
-		self.close_port()
-		if process:
-			self.http_server = Process(name='QHTTPServer', target=self.http_server_main)
-			self.http_server.start()
-		else:
-			self.http_server_main()
-
-	def kill_server(self,process=False):
-		self.close_port()
-		if process:
-			self.http_server.terminate()
-			self.http_server.join()
-
-	def test_server(self,ip,port,username,password):
+	def test_server(self,ip=None,port=None,username=None,password=None):
 		try:
 			sleep(2)
 			_ip = ip or self.ip
@@ -120,24 +164,38 @@ class QHTTPServer():
 		except:
 			pass
 
-	def close_port(self):
-		for process in process_iter():
-			try:
-				for conn in process.connections(kind='inet'):
-					if self.port == conn.laddr.port:
-						process.send_signal(SIGTERM)
-						process.kill()
-			except:
-				pass
+	def run_server(self,process=False):
+		if process:
+			if self.close_port():
+				self.process = Popen(['python',path.realpath(__file__),'--custom','--ip',str(self.ip),'--port',str(self.port),'--username',str(self.username),'--password',str(self.password),'--mocking',str(self.mocking),'--logs',str(self._logs)])
+		else:
+			self.http_server_main()
 
-if __name__ == "__main__":
+	def kill_server(self,process=False):
+		if self.process != None:
+			self.process.kill()
+
+	def close_port(self):
+		sock = ssocket(AF_INET,SOCK_STREAM)
+		sock.settimeout(2) 
+		if sock.connect_ex((self.ip,self.port)) == 0:
+			for process in process_iter():
+				try:
+					for conn in process.connections(kind='inet'):
+						if self.port == conn.laddr.port:
+							process.send_signal(SIGTERM)
+							process.kill()
+				except:
+					pass
+		if sock.connect_ex((self.ip,self.port)) != 0:
+			return True
+		else:
+			self.logs.error(['errors',{'server':'http_server','error':'port_open','type':'Port {} still open..'.format(self.ip)}])
+			return False
+
+if __name__ == '__main__':
 	from server_options import server_arguments
 	parsed = server_arguments()
-
 	if parsed.docker or parsed.aws or parsed.custom:
 		qhttpserver = QHTTPServer(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password,mocking=parsed.mocking,logs=parsed.logs)
 		qhttpserver.run_server()
-
-	if parsed.test:
-		qhttpserver = QHTTPServer(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password,mocking=parsed.mocking,logs=parsed.logs)
-		qhttpserver.test_server(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password)

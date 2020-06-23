@@ -19,7 +19,7 @@ def serialize_object(_dict):
 class CustomHandler(Handler):
 	def __init__(self,logs_type):
 		self.logs_type = logs_type
-		if logs_type == None:
+		if logs_type == None or logs_type =='' or logs_type == 'None':
 			self.logs_type = "terminal"
 		self.db = None
 		if "db" in self.logs_type or "all" in self.logs_type:

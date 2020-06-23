@@ -18,7 +18,7 @@ class QSMBServer():
 		self.port = port or 445 
 		self.username = username or "test"
 		self.password = password or "test"
-		self.mocking = mocking or None
+		self.mocking = mocking or ''
 		self.setup_logger(logs)
 
 	def setup_logger(self,logs):

@@ -3,7 +3,7 @@
 #
 [![Generic badge](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/qeeqbox/chameleon/master/info&label=version&query=$.version&colorB=blue)](https://github.com/qeeqbox/chameleon/blob/master/changes.md) [![Generic badge](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/qeeqbox/chameleon/master/info&label=docker-compose&query=$.dockercompose&colorB=green)](https://github.com/qeeqbox/chameleon/blob/master/changes.md)
 
-Customizable honeypots for monitoring network traffic, bots activities and username\password credentials (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP, VNC, SMB, SOCKS5, Redis, TELNET, Postgres and MySQL)
+Customizable honeypots for monitoring network traffic, bots activities and username\password credentials (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP, VNC, SMB, SOCKS5, Redis, TELNET and Postgres)
 
 ## Grafana Interface
 <img src="https://raw.githubusercontent.com/qeeqbox/chameleon/master/readme/intro.png" style="max-width:768px"/>
@@ -64,7 +64,7 @@ To mointor the logs
 open localhost:3000 (username and passowrd: admin)
 ```
 
-#### Or, import your desired server as object (SSH Server)
+#### Or, import your desired non-blocking server as object (SSH Server )
 ```bash
 copy ssh_server.py to your folder
 ```
@@ -79,6 +79,8 @@ copy ssh_server.py to your folder
 from ssh_server import QSSHServer
 qsshserver = QSSHServer()
 qsshserver.run_server()
+qsshserver.test_server()
+qsshserver.kill_server()
 ```
 ``` bash
 ssh test@127.0.0.1
@@ -111,7 +113,7 @@ pip install -Iv rsa==4.0
 - VNC (Emulator using Twisted)
 - Postgres (Emulator using Twisted)
 - Redis (Emulator using Twisted)
-- Mysql (Emulator using Twisted)
+- Mysql (Coming..)
 - Elasticsearch (Coming..)
 - Oracle (Coming..)
 - ldap (maybe)
@@ -165,3 +167,4 @@ By using this framework, you are accepting the license terms of each package lis
 
 ## Disclaimer\Notes
 - Almost all servers and emulators are stripped-down - You can adjust that as needed based on the client
+- If you are interested in adopting some features in your project - please mention this source somewhere in your project

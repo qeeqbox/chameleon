@@ -16,7 +16,7 @@ class QSMTPServer():
 		self.port = port or 25
 		self.username = username or "test"
 		self.password = password or "test"
-		self.mocking = mocking or None
+		self.mocking = mocking or ''
 		self.random_servers = []
 		self.setup_logger(logs)
 

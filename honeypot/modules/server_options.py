@@ -11,7 +11,7 @@ def server_arguments():
 	_server_parsergroupdeq.add_argument('--password',type=str, help="Change password", required=False,metavar='')
 	_server_parsergroupdeq.add_argument('--resolver_addresses',type=str, help="Change resolver address", required=False,metavar='')
 	_server_parsergroupdeq.add_argument('--domain',type=str, help="A domain to test", required=False,metavar='')
-	_server_parsergroupdeq.add_argument('--mocking',action='store_true', help="Random banner", required=False)
+	_server_parsergroupdeq.add_argument('--mocking',type=str, help="Random banner", required=False)
 	_server_parsergroupdes = _server_parser.add_argument_group('Sinffer options')
 	_server_parsergroupdes.add_argument('--filter',type=str, help="setup the Sinffer filter", required=False)
 	_server_parsergroupdes.add_argument('--interface',type=str, help="sinffer interface E.g eth0", required=False)

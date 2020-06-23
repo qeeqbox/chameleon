@@ -4,13 +4,14 @@ from twisted.internet.protocol import Protocol,Factory
 from twisted.internet import reactor
 from psutil import process_iter
 from signal import SIGTERM
-from time import sleep
-from multiprocessing import Process
 from logging import DEBUG, basicConfig, getLogger
+from redis import StrictRedis
 from twisted.python import log as tlog
 from os import path
 from tempfile import gettempdir,_get_candidate_names
-from redis import StrictRedis
+from subprocess import Popen
+from socket import socket as ssocket
+from socket import AF_INET,SOCK_STREAM
 
 class QRedisServer():
 	def __init__(self,ip=None,port=None,username=None,password=None,mocking=False,logs=None):
@@ -18,15 +19,18 @@ class QRedisServer():
 		self.port = port or 6379
 		self.username = username or "test"
 		self.password = password or "test"
-		self.setup_logger(logs)
+		self.mocking = mocking or ''
+		self.process = None
+		self._logs = logs
+		self.setup_logger(self._logs)
 		self.disable_logger()
 
 	def disable_logger(self):
 		temp_name = path.join(gettempdir(), next(_get_candidate_names()))
-		tlog.startLogging(open(temp_name, "w"), setStdout=False)
+		tlog.startLogging(open(temp_name, 'w'), setStdout=False)
 
 	def setup_logger(self,logs):
-		self.logs = getLogger("chameleonlogger")
+		self.logs = getLogger('chameleonlogger')
 		self.logs.setLevel(DEBUG)
 		if logs:
 			from custom_logging import CustomHandler
@@ -91,22 +95,8 @@ class QRedisServer():
 		reactor.listenTCP(port=self.port, factory=factory, interface=self.ip)
 		reactor.run()
 
-	def run_server(self,process=False):
-		self.close_port()
-		if process:
-			self.redis_server = Process(name='QRedisServer_', target=self.redis_server_main)
-			self.redis_server.start()
-		else:
-			self.redis_server_main()
+	def test_server(self,ip=None,port=None,username=None,password=None):
 
-	def kill_server(self,process=False):
-		self.close_port()
-		if process:
-			self.redis_server.terminate()
-			self.redis_server.join()
-
-	def test_server(self,ip,port,username,password):
-		sleep(3)
 		try:
 			_ip = ip or self.ip
 			_port = port or self.port 
@@ -118,24 +108,38 @@ class QRedisServer():
 		except Exception:
 			pass
 
-	def close_port(self):
-		for process in process_iter():
-			try:
-				for conn in process.connections(kind='inet'):
-					if self.port == conn.laddr.port:
-						process.send_signal(SIGTERM)
-						process.kill()
-			except:
-				pass
+	def run_server(self,process=False):
+		if process:
+			if self.close_port():
+				self.process = Popen(['python',path.realpath(__file__),'--custom','--ip',str(self.ip),'--port',str(self.port),'--username',str(self.username),'--password',str(self.password),'--mocking',str(self.mocking),'--logs',str(self._logs)])
+		else:
+			self.redis_server_main()
 
-if __name__ == "__main__":
+	def kill_server(self,process=False):
+		if self.process != None:
+			self.process.kill()
+
+	def close_port(self):
+		sock = ssocket(AF_INET,SOCK_STREAM)
+		sock.settimeout(2) 
+		if sock.connect_ex((self.ip,self.port)) == 0:
+			for process in process_iter():
+				try:
+					for conn in process.connections(kind='inet'):
+						if self.port == conn.laddr.port:
+							process.send_signal(SIGTERM)
+							process.kill()
+				except:
+					pass
+		if sock.connect_ex((self.ip,self.port)) != 0:
+			return True
+		else:
+			self.logs.error(['errors',{'server':'redis_server','error':'port_open','type':'Port {} still open..'.format(self.ip)}])
+			return False
+
+if __name__ == '__main__':
 	from server_options import server_arguments
 	parsed = server_arguments()
-
 	if parsed.docker or parsed.aws or parsed.custom:
-		qrediserver = QRedisServer(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password,mocking=parsed.mocking,logs=parsed.logs)
-		qrediserver.run_server()
-
-	if parsed.test:
-		qrediserver = QRedisServer(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password,mocking=parsed.mocking,logs=parsed.logs)
-		qrediserver.test_server(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password)
+		qredisserver = QRedisServer(ip=parsed.ip,port=parsed.port,username=parsed.username,password=parsed.password,mocking=parsed.mocking,logs=parsed.logs)
+		qredisserver.run_server()

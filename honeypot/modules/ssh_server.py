@@ -18,7 +18,7 @@ class QSSHServer():
 		self.port = port or 22
 		self.username = username or "test"
 		self.password = password or "test"
-		self.mocking = mocking or None
+		self.mocking = mocking or ''
 		self.random_servers = ['OpenSSH 7.5','OpenSSH 7.3','Serv-U SSH Server 15.1.1.108','OpenSSH 6.4']
 		self.setup_logger(logs)
 
