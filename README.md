@@ -3,7 +3,7 @@
 #
 [![Generic badge](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/qeeqbox/chameleon/master/info&label=version&query=$.version&colorB=blue)](https://github.com/qeeqbox/chameleon/blob/master/changes.md) [![Generic badge](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/qeeqbox/chameleon/master/info&label=docker-compose&query=$.dockercompose&colorB=green)](https://github.com/qeeqbox/chameleon/blob/master/changes.md)
 
-Customizable honeypots for monitoring network traffic, bots activities and username\password credentials (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP, VNC, SMB, SOCKS5, Redis, TELNET and Postgres)
+Customizable honeypots for monitoring network traffic, bots activities and username\password credentials (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP, VNC, SMB, SOCKS5, Redis, TELNET and Postgres and MySQL)
 
 ## Grafana Interface
 <img src="https://raw.githubusercontent.com/qeeqbox/chameleon/master/readme/intro.png" style="max-width:768px"/>
@@ -102,18 +102,18 @@ pip install -Iv rsa==4.0
 - HTTP Proxy (Server using Twisted)
 - HTTP (Server using Twisted)
 - HTTPS (Server using Twisted)
-- SSH (Server using Twisted)
+- SSH (Server using socket)
 - POP3 (Server using Twisted)
 - IMAP (Server using Twisted)
 - STMP (Server using smtpd)
 - RDP (Server using Twisted)
 - SMB (Server using impacket)
-- SOCK5 (Server using Twisted)
+- SOCK5 (Server using socketserver)
 - TELNET (Server using Twisted)
 - VNC (Emulator using Twisted)
 - Postgres (Emulator using Twisted)
 - Redis (Emulator using Twisted)
-- Mysql (Coming..)
+- Mysql (Emulator using Twisted)
 - Elasticsearch (Coming..)
 - Oracle (Coming..)
 - ldap (maybe)
@@ -166,5 +166,4 @@ By using this framework, you are accepting the license terms of each package lis
 - https://github.com/TigerVNC/tigervnc/blob/master/LICENCE.TXT
 
 ## Disclaimer\Notes
-- Almost all servers and emulators are stripped-down - You can adjust that as needed based on the client
-- If you are interested in adopting some features in your project - please mention this source somewhere in your project
+- Almost all servers and emulators are stripped-down - You can adjust that as needed
