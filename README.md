@@ -33,9 +33,9 @@ git clone https://github.com/qeeqbox/chameleon.git
 cd chameleon
 chmod +x ./run.sh
 ./run.sh auto_dev
-
-The Grafana interface localhost:3000 will open automatically after finishing the initialization process (username is changeme457f6460cb287 and passowrd is changemed23b8cc6a20e0)
 ```
+The Grafana interface localhost:3000 will open automatically after finishing the initialization process (username is changeme457f6460cb287 and passowrd is changemed23b8cc6a20e0)
+
 Wait for a few seconds until honeypot shows the IP address
 ```bash
 ...
