@@ -27,12 +27,14 @@ Customizable honeypots for monitoring network traffic, bots activities and usern
 - & More features to Explore
 
 ## Install and run
-#### On ubuntu 18 or 19 System (Auto-configure dev)
+#### On ubuntu 18 or 19 System (Auto-configure)
 ```bash
 git clone https://github.com/qeeqbox/chameleon.git
 cd chameleon
 chmod +x ./run.sh
 ./run.sh auto_dev
+
+The Grafana interface localhost:3000 will open automatically after finishing the initialization process (username is changeme457f6460cb287 and passowrd is changemed23b8cc6a20e0)
 ```
 Wait for a few seconds until honeypot shows the IP address
 ```bash
@@ -47,10 +49,6 @@ ping 172.19.0.3
 or run any network tool against it
 nmap 172.19.0.3
 ```
-To mointor the logs
-```bash
-open localhost:3000 (username is changeme457f6460cb287 and passowrd is changemed23b8cc6a20e0)
-```
 
 #### On ubuntu 18 or 19 System (Auto-configure test)
 ```bash
@@ -58,10 +56,8 @@ git clone https://github.com/qeeqbox/chameleon.git
 cd chameleon
 chmod +x ./run.sh
 ./run.sh auto_test
-```
-To mointor the logs
-```bash
-open localhost:3000 (username and passowrd: admin)
+
+The Grafana interface localhost:3000 will open automatically after finishing the initialization process (username is admin and passowrd is admin)
 ```
 
 #### Or, import your desired non-blocking server as object (SSH Server )
