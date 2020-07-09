@@ -56,9 +56,8 @@ git clone https://github.com/qeeqbox/chameleon.git
 cd chameleon
 chmod +x ./run.sh
 ./run.sh auto_test
-
-The Grafana interface localhost:3000 will open automatically after finishing the initialization process (username is admin and passowrd is admin)
 ```
+The Grafana interface localhost:3000 will open automatically after finishing the initialization process (username is admin and passowrd is admin)
 
 #### Or, import your desired non-blocking server as object (SSH Server )
 ```bash
