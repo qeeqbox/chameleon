@@ -3,7 +3,7 @@ echo -e "Current servers (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, R
 
 setup_requirements () {
 	sudo apt update -y
-	sudo apt install -y linux-headers-$(uname -r) docker.io jq xdg-utils
+	sudo apt install -y linux-headers-$(uname -r) docker.io jq xdg-utils curl
 	sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 	sudo chmod +x /usr/local/bin/docker-compose
 	which docker-compose && echo "Good"
