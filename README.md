@@ -161,4 +161,6 @@ By using this framework, you are accepting the license terms of each package lis
 - https://github.com/TigerVNC/tigervnc/blob/master/LICENCE.TXT
 
 ## Disclaimer\Notes
+- Do not deploy without proper configuration
+- Setup some security group rules and remove default credentials
 - Almost all servers and emulators are stripped-down - You can adjust that as needed
