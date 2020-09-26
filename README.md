@@ -1,7 +1,7 @@
 <p align="center"> <img src="https://raw.githubusercontent.com/qeeqbox/chameleon/master/readme/chameleonlogo.png"></p>
 
 #
-[![Generic badge](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/qeeqbox/chameleon/master/info&label=version&query=$.version&colorB=blue&style=flat-square)](https://github.com/qeeqbox/chameleon/blob/master/changes.md) [![Generic badge](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/qeeqbox/chameleon/master/info&label=build&query=$.dockercompose&colorB=green&style=flat-square)](https://github.com/qeeqbox/chameleon/blob/master/changes.md)  [![Generic badge](https://img.shields.io/static/v1?label=%F0%9F%91%8D&message=Thanks&color=yellow&style=flat-square)](https://github.com/qeeqbox/chameleon/stargazers)
+[![Generic badge](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/qeeqbox/chameleon/master/info&label=version&query=$.version&colorB=blue&style=flat-square)](https://github.com/qeeqbox/chameleon/blob/master/changes.md) [![Generic badge](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/qeeqbox/chameleon/master/info&label=build&query=$.dockercompose&colorB=green&style=flat-square)](https://github.com/qeeqbox/chameleon/blob/master/info)  [![Generic badge](https://img.shields.io/static/v1?label=%F0%9F%91%8D&message=Thanks&color=yellow&style=flat-square)](https://github.com/qeeqbox/chameleon/stargazers)
 
 Customizable honeypots for monitoring network traffic, bots activities and username\password credentials (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP, VNC, SMB, SOCKS5, Redis, TELNET and Postgres and MySQL)
 
