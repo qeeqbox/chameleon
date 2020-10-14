@@ -6,7 +6,6 @@ services:
     restart: always
     cap_add:
       - NET_ADMIN
-    privileged: true
     depends_on:
       - postgres
     networks:
@@ -20,7 +19,6 @@ services:
     command: /honeypot/testing.sh
     cap_add:
       - NET_ADMIN
-    privileged: true
     depends_on:
       - honeypot
     networks:
