@@ -1,4 +1,4 @@
-{"version":"2020.V.01.06",
- "dockercompose":"passed",
- "testing":"passed",
- "auto_testing":"49C4AB56-727C-4B77-ACE0-0F5511A38C7D"}
+{"version":"2020.V.01.07",
+ "dockercomposebuild":"passed",
+ "automatedtest":"passed",
+ "auto_testing":"8fa46cbb-8718-4fd6-ab04-b3485855ced7"}
