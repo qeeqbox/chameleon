@@ -6,7 +6,6 @@ services:
     restart: always
     cap_add:
       - NET_ADMIN
-    privileged: true
     depends_on:
       - postgres
     networks:
