@@ -1,9 +1,5 @@
 <p align="center"> <img src="https://raw.githubusercontent.com/qeeqbox/chameleon/master/readme/chameleonlogo.png"></p>
 
-## Note: If you want to deploy this on a Raspberry Pi 3B+ make sure you setup zram first to avoid lockups.
-
-GitHub: https://github.com/Nefelim4ag/systemd-swap
-
 #
 [![Generic badge](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/qeeqbox/chameleon/master/info&label=version&query=$.version&colorB=blue&style=flat-square)](https://github.com/qeeqbox/chameleon/blob/master/changes.md) [![Generic badge](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/qeeqbox/chameleon/master/info&label=build&query=$.dockercomposebuild&colorB=green&style=flat-square)](https://github.com/qeeqbox/chameleon/blob/master/changes.md) [![Generic badge](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/qeeqbox/chameleon/master/info&label=test&query=$.automatedtest&colorB=green&style=flat-square)](https://github.com/qeeqbox/chameleon/blob/master/changes.md) [![Generic badge](https://img.shields.io/static/v1?label=%F0%9F%91%8D&message=!&color=yellow&style=flat-square)](https://github.com/qeeqbox/chameleon/stargazers)
 
@@ -88,6 +84,10 @@ ssh test@127.0.0.1
 ``` bash
 INFO:chameleonlogger:['servers', {'status': 'success', 'username': 'test', 'ip': '127.0.0.1', 'server': 'ssh_server', 'action': 'login', 'password': 'test', 'port': 38696}]
 ```
+
+#### Raspberry Pi 3B+ [(setup zram first to avoid lockups)](https://github.com/qeeqbox/chameleon/pull/1)
+
+GitHub: https://github.com/Nefelim4ag/systemd-swap
 
 ## Requirements (Servers only)
 ```bash
