@@ -87,8 +87,6 @@ INFO:chameleonlogger:['servers', {'status': 'success', 'username': 'test', 'ip':
 
 #### Raspberry Pi 3B+ [(setup zram first to avoid lockups)](https://github.com/qeeqbox/chameleon/pull/1)
 
-GitHub: https://github.com/Nefelim4ag/systemd-swap
-
 ## Requirements (Servers only)
 ```bash
 apt-get update -y && apt-get install -y iptables-persistent tcpdump nmap iputils-ping python python-pip python-psycopg2 lsof psmisc dnsutils
