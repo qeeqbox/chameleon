@@ -139,7 +139,7 @@ pip install -Iv rsa==4.0
 `Twisted, documentation, Impacket, documentation, Grafana, documentation, Expert, Twisted, robertheaton`
 
 ## Other Licenses
-By using this framework, you are accepting the license terms of each the following package: `grafana, tcpdump, nmap, psycopg, dnsutils, scapy, netifaces, pyftpdlib, sqlalchemy, pyyaml, paramiko, impacket, rdpy, psutil, requests, FreeRDP, SMBClient, tigervnc`
+By using this framework, you are accepting the license terms of all these packages: `grafana, tcpdump, nmap, psycopg, dnsutils, scapy, netifaces, pyftpdlib, sqlalchemy, pyyaml, paramiko, impacket, rdpy, psutil, requests, FreeRDP, SMBClient, tigervnc`
 
 ## Disclaimer\Notes
 - Do not deploy without proper configuration
