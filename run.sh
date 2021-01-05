@@ -46,7 +46,7 @@ auto_configure () {
 	dev_project
 }
 
-if [[ "$1" == "auto_test" ]]; then
+if [[ "$1" == "auto_configure_test" ]]; then
 	stop_containers
 	wait_on_web_interface & 
 	auto_configure_test
