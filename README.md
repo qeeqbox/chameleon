@@ -136,17 +136,13 @@ pip install -Iv rsa==4.0
 - Adding a control panel
 
 ## Resources
-- Twisted documentation
-- Impacket documentation
-- Grafana documentation
-- Expert Twisted
-- robertheaton
-- Please let me know if i missed a resource or dependency
+`Twisted, documentation, Impacket, documentation, Grafana, documentation, Expert, Twisted, robertheaton`
 
 ## Other Licenses
-By using this framework, you are accepting the license terms of each the following package: `grafana tcpdump nmap psycopg dnsutils scapy netifaces pyftpdlib sqlalchemy pyyaml paramiko impacket rdpy psutil requests FreeRDP SMBClient tigervnc`
+By using this framework, you are accepting the license terms of each the following package: `grafana, tcpdump, nmap, psycopg, dnsutils, scapy, netifaces, pyftpdlib, sqlalchemy, pyyaml, paramiko, impacket, rdpy, psutil, requests, FreeRDP, SMBClient, tigervnc`
 
 ## Disclaimer\Notes
 - Do not deploy without proper configuration
 - Setup some security group rules and remove default credentials
 - Almost all servers and emulators are stripped-down - You can adjust that as needed
+- Please let me know if i missed a resource or dependency
