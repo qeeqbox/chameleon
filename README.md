@@ -60,7 +60,7 @@ chmod +x ./run.sh
 ```
 The Grafana interface http://localhost:3000 will open automatically after finishing the initialization process (username is admin and passowrd is admin)
 
-#### Or, import your desired non-blocking server as object (SSH Server )
+#### Or, import your desired non-blocking server as object (SSH Server)
 ```bash
 copy ssh_server.py to your folder
 ```
@@ -71,6 +71,8 @@ copy ssh_server.py to your folder
 # password= String E.g. Test
 # mocking= Boolean or String E.g OpenSSH 7.0
 # logs= String E.g db, terminal or all
+# --------------------------------------------------------------------
+# always remember to add process=true to run_server() for non-blocking
 
 from ssh_server import QSSHServer
 qsshserver = QSSHServer(port=9999)
