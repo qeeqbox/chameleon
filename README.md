@@ -144,26 +144,7 @@ pip install -Iv rsa==4.0
 - Please let me know if i missed a resource or dependency
 
 ## Other Licenses
-By using this framework, you are accepting the license terms of each package listed below:
-- https://github.com/grafana/grafana/blob/master/LICENSE
-- https://www.tcpdump.org/license.html
-- https://nmap.org/book/man-legal.html
-- https://www.psycopg.org/license/
-- https://github.com/tutumcloud/dnsutils/blob/master/LICENSE
-- https://github.com/secdev/scapy/blob/master/LICENSE
-- https://github.com/al45tair/netifaces/blob/master/LICENSE
-- https://github.com/giampaolo/pyftpdlib/blob/master/LICENSE
-- https://docs.sqlalchemy.org/en/13/copyright.html
-- https://github.com/yaml/pyyaml/blob/master/LICENSE
-- https://github.com/paramiko/paramiko/blob/master/LICENSE
-- https://github.com/SecureAuthCorp/impacket/blob/master/LICENSE
-- https://twistedmatrix.com/trac/
-- https://github.com/citronneur/rdpy/blob/master/LICENSE
-- https://github.com/giampaolo/psutil/blob/master/LICENSE
-- https://github.com/psf/requests/blob/master/LICENSE
-- https://github.com/FreeRDP/FreeRDP/blob/master/LICENSE
-- https://github.com/filmicpro/SMBClient/blob/master/LICENSE
-- https://github.com/TigerVNC/tigervnc/blob/master/LICENCE.TXT
+By using this framework, you are accepting the license terms of each the following package: `grafana tcpdump nmap psycopg dnsutils scapy netifaces pyftpdlib sqlalchemy pyyaml paramiko impacket rdpy psutil requests FreeRDP SMBClient tigervnc`
 
 ## Disclaimer\Notes
 - Do not deploy without proper configuration
