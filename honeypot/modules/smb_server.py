@@ -15,7 +15,7 @@ from logging import DEBUG, basicConfig, getLogger
 class QSMBServer():
 	def __init__(self,ip=None,port=None,username=None,password=None,mocking=False,logs=None):
 		self.ip= ip or '0.0.0.0'
-		self.port = port or 445 
+		self.port = port or 445
 		self.username = username or "test"
 		self.password = password or "test"
 		self.mocking = mocking or ''
@@ -73,11 +73,11 @@ class QSMBServer():
 			self.smb_server.terminate()
 			self.smb_server.join()
 
-	def test_server(self,ip,port,username,password):
+	def test_server(self,ip=None,port=None,username=None,password=None):
 		try:
 			sleep(2)
 			_ip = ip or self.ip
-			_port = port or self.port 
+			_port = port or self.port
 			_username = username or self.username
 			_password = password or self.password
 			smb_client = SMBConnection(_ip, _ip,sess_port=_port)
