@@ -66,16 +66,16 @@ copy ssh_server.py to your folder
 ```
 ```python
 # ip= String E.g. 0.0.0.0
-# port= Int E.g. 22
+# port= Int E.g. 9999
 # username= String E.g. Test
 # password= String E.g. Test
 # mocking= Boolean or String E.g OpenSSH 7.0
 # logs= String E.g db, terminal or all
 
 from ssh_server import QSSHServer
-qsshserver = QSSHServer()
-qsshserver.run_server()
-qsshserver.test_server()
+qsshserver = QSSHServer(port=9999)
+qsshserver.run_server(process=True)
+qsshserver.test_server(port=9999)
 qsshserver.kill_server()
 ```
 ``` bash
