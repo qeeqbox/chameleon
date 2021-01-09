@@ -1,5 +1,8 @@
 __G__ = "(G)bd249ce4"
 
+from warnings import filterwarnings
+filterwarnings(action='ignore',module='.*paramiko.*')
+
 from paramiko import ServerInterface,Transport,RSAKey,AutoAddPolicy
 from socket import socket,AF_INET,SOCK_STREAM,SOL_SOCKET,SO_REUSEADDR
 from _thread import start_new_thread
