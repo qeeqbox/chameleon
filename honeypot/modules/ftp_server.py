@@ -1,5 +1,8 @@
 __G__ = '(G)bd249ce4'
 
+from warnings import filterwarnings
+filterwarnings(action='ignore',module='.*OpenSSL.*')
+
 from twisted.protocols.ftp import FTPFactory, FTP, AUTH_FAILURE
 from twisted.internet import reactor
 from ftplib import FTP as FFTP

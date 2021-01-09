@@ -1,5 +1,8 @@
 __G__ = "(G)bd249ce4"
 
+from warnings import filterwarnings
+filterwarnings(action='ignore',module='.*OpenSSL.*')
+
 from dns.resolver import query as dsnquery
 from twisted.internet import reactor
 from twisted.internet.protocol import Protocol,ClientFactory,Factory

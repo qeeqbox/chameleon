@@ -1,5 +1,8 @@
 __G__ = "(G)bd249ce4"
 
+from warnings import filterwarnings
+filterwarnings(action='ignore',module='.*scapy.*')
+
 from scapy.all import *
 from sys import stdout
 from binascii import hexlify

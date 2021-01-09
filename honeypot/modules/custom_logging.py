@@ -5,6 +5,7 @@ from json import JSONEncoder, dumps
 from collections import Mapping
 from logging import Handler
 from sys import stdout
+from pygments import highlight, lexers, formatters
 
 class ComplexEncoder(JSONEncoder):
 	def default(self, obj):
@@ -30,5 +31,8 @@ class CustomHandler(Handler):
 		if "db" in self.logs_type or "all" in self.logs_type:
 			self.db.insert_into_data_safe(record.msg[0],dumps(serialize_object(record.msg[1]),cls=ComplexEncoder))
 		if "terminal" in self.logs_type or "all" in self.logs_type:
-			print(record.msg)
+			try:
+				print(highlight(unicode(dumps(record.msg[1], sort_keys=True, indent=4), 'UTF-8'), lexers.JsonLexer(), formatters.TerminalFormatter()))
+			except:
+				print(highlight(unicode(dumps(record.msg, sort_keys=True, indent=4), 'UTF-8'), lexers.JsonLexer(), formatters.TerminalFormatter()))
 		stdout.flush()

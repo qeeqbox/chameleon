@@ -28,6 +28,14 @@ Customizable honeypots for monitoring network traffic, bots activities and usern
 - & More features to Explore
 
 ## Install and run
+#### Docker stanalone simple
+```bash
+git clone https://github.com/qeeqbox/chameleon.git
+cd chameleon
+# choose which honeypot http, https, ssh etc and use -p in docker for the ports
+docker build -t honeypot ./honeypot/. && docker run -p 9999:9999 -p 9998:9998 -it honeypot --mode normal --servers "ssh:9999 http:9998"
+```
+
 #### On ubuntu 18 or 19 System (Auto-configure)
 ```bash
 git clone https://github.com/qeeqbox/chameleon.git

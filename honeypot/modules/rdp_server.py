@@ -1,5 +1,8 @@
 __G__ = "(G)bd249ce4"
 
+from warnings import filterwarnings
+filterwarnings(action='ignore',module='.*OpenSSL.*')
+
 from twisted.internet import reactor
 from OpenSSL import crypto
 from string import digits,ascii_lowercase
