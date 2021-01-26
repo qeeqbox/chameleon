@@ -150,7 +150,7 @@ pip install -Iv rsa==4.0
 By using this framework, you are accepting the license terms of all these packages: `grafana, tcpdump, nmap, psycopg, dnsutils, scapy, netifaces, pyftpdlib, sqlalchemy, pyyaml, paramiko, impacket, rdpy, psutil, requests, FreeRDP, SMBClient, tigervnc`
 
 ## Articles
-[redteaming.net](https://redteaming.net/pages/201db2/) [my-infosec-awesome]https://github.com/pe3zx/my-infosec-awesome
+[redteaming.net](https://redteaming.net/pages/201db2/) [my-infosec-awesome](https://github.com/pe3zx/my-infosec-awesome)
 
 ## Disclaimer\Notes
 - Do not deploy without proper configuration
