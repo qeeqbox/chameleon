@@ -1,5 +1,8 @@
 __G__ = "(G)bd249ce4"
 
+from warnings import filterwarnings
+filterwarnings(action='ignore',module='.*OpenSSL.*')
+
 from twisted.mail.pop3 import POP3
 from twisted.internet.protocol import Factory
 from twisted.internet import reactor
