@@ -43,7 +43,7 @@ cd chameleon
 chmod +x ./run.sh
 ./run.sh auto_configure
 ```
-The Grafana interface http://localhost:3000 will open automatically after finishing the initialization process (username is changeme457f6460cb287 and passowrd is changemed23b8cc6a20e0)
+The Grafana interface http://localhost:3000 will open automatically after finishing the initialization process (username is changeme457f6460cb287 and passowrd is changemed23b8cc6a20e0). If you don't see Chameleon dashboard, click on the search icon in the left bar and add it.
 
 Wait for a few seconds until honeypot shows the IP address
 ```bash
@@ -66,7 +66,7 @@ cd chameleon
 chmod +x ./run.sh
 ./run.sh auto_test
 ```
-The Grafana interface http://localhost:3000 will open automatically after finishing the initialization process (username is admin and passowrd is admin)
+The Grafana interface http://localhost:3000 will open automatically after finishing the initialization process (username is admin and passowrd is admin). If you don't see Chameleon dashboard, click on the search icon in the left bar and add it
 
 #### Or, import your desired non-blocking server as object (SSH Server)
 ```bash
@@ -94,6 +94,9 @@ ssh test@127.0.0.1
 ``` bash
 INFO:chameleonlogger:['servers', {'status': 'success', 'username': 'test', 'ip': '127.0.0.1', 'server': 'ssh_server', 'action': 'login', 'password': 'test', 'port': 38696}]
 ```
+
+## If you don't see Chameleon dashboard, click on the search icon in the left bar and add it 
+<img src="https://raw.githubusercontent.com/qeeqbox/chameleon/master/readme/find.png" style="max-width:768px"/>
 
 #### Raspberry Pi 3B+ [(setup zram first to avoid lockups)](https://github.com/qeeqbox/chameleon/pull/1)
 
