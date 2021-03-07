@@ -1,5 +1,8 @@
 __G__ = "(G)bd249ce4"
 
+from warnings import filterwarnings
+filterwarnings(action='ignore',module='.*OpenSSL.*')
+
 from multiprocessing import Process
 from psutil import process_iter
 from signal import SIGTERM

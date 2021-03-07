@@ -1,5 +1,11 @@
 __G__ = "(G)bd249ce4"
 
+from warnings import filterwarnings
+filterwarnings(action='ignore',category=DeprecationWarning)
+
+from warnings import filterwarnings
+filterwarnings(action='ignore',module='.*impacket.*')
+
 from logging import StreamHandler,getLogger,DEBUG
 from impacket import smbserver
 from impacket.smbconnection import SMBConnection
