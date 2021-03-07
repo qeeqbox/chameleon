@@ -1,5 +1,8 @@
 __G__ = "(G)bd249ce4"
 
+from warnings import filterwarnings
+filterwarnings(action='ignore',module='.*OpenSSL.*')
+
 from smtpd import SMTPChannel, SMTPServer
 from asyncore import loop
 from base64 import decodestring
