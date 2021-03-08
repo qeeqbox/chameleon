@@ -64,7 +64,7 @@ nmap 172.19.0.3
 git clone https://github.com/qeeqbox/chameleon.git
 cd chameleon
 chmod +x ./run.sh
-./run.sh auto_test
+./run.sh auto_configure_test
 ```
 The Grafana interface http://localhost:3000 will open automatically after finishing the initialization process (username is admin and passowrd is admin). If you don't see Chameleon dashboard, click on the search icon in the left bar and add it
 
@@ -103,9 +103,10 @@ INFO:chameleonlogger:['servers', {'status': 'success', 'username': 'test', 'ip':
 ## Requirements (Servers only)
 ```bash
 apt-get update -y && apt-get install -y iptables-persistent tcpdump nmap iputils-ping python python-pip python-psycopg2 lsof psmisc dnsutils
-pip install scapy netifaces pyftpdlib sqlalchemy pyyaml paramiko==2.7.1 impacket twisted rdpy==1.3.2 psutil requests
+pip install scapy==2.4.4 netifaces==0.10.9 pyftpdlib==1.5.6 sqlalchemy==1.3.23 pyyaml==5.4.1 paramiko==2.7.1 impacket==0.9.22 twisted==20.3.0 psutil==5.8.0 requests==2.25.1 redis==3.5.3 mysql-connector-python==8.0.23 pygments==2.5.2
 pip install -U requests[socks]
 pip install -Iv rsa==4.0
+pip install rdpy==1.3.2
 ```
 
 ## Current Servers/Emulators
