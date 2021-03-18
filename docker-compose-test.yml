@@ -41,7 +41,7 @@ services:
 
   postgres:
     image: postgres:9.6
-    container_name: postgres
+    container_name: chameleon_postgres
     restart: always
     networks:
       - backend

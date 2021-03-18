@@ -7,7 +7,7 @@ from traceback import format_exc
 
 class postgres_class():
 	def __init__(self,host=None,port=None,username=None,password=None,db=None,drop=False):
-		self.host = host or 'postgres' 
+		self.host = host or 'chameleon_postgres' 
 		self.port = port or 9999
 		self.username = username or 'changeme027a088931d22' 
 		self.password = password or 'changeme0f40773877963' 

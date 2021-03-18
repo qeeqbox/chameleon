@@ -3,7 +3,7 @@ apiVersion: 1
 datasources:
 - name: chameleon
   type: postgres
-  url: postgres:9999
+  url: chameleon_postgres:9999
   access: proxy
   user: changeme027a088931d22
   password: changeme0f40773877963
