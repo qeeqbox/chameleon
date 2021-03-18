@@ -11,12 +11,9 @@ setup_requirements () {
 }
 
 wait_on_web_interface () {
-echo ''
 until $(curl --silent --head --fail http://localhost:3000 --output /dev/null); do
-echo -ne "\n\n[\033[47m\033[0;31mInitializing project in progress..\033[0m]\n\n"
 sleep 5
 done
-echo ''
 xdg-open http://localhost:3000
 }
 
@@ -40,30 +37,32 @@ deploy_aws_project () {
 }
 
 auto_configure_test () {
+	stop_containers
+	wait_on_web_interface & 
 	setup_requirements
 	test_project
+	stop_containers 
+	kill %% 2>/dev/null
 }
 
 auto_configure () {
+	stop_containers
+	wait_on_web_interface & 
 	setup_requirements
 	dev_project
+	stop_containers
+	kill %% 2>/dev/null
 }
 
 if [[ "$1" == "auto_configure_test" ]]; then
-	stop_containers
-	wait_on_web_interface & 
 	auto_configure_test
-	stop_containers 
 fi
 
 if [[ "$1" == "auto_configure" ]]; then
-	stop_containers
-	wait_on_web_interface & 
 	auto_configure
-	stop_containers 
 fi
 
-kill %%
+kill %% 2>/dev/null
 
 while read -p "`echo -e '\nChoose an option:\n1) Setup requirements (docker, docker-compose)\n2) Test the project (All servers and Sniffer)\n8) Run auto configuration\n9) Run auto test\n>> '`"; do
   case $REPLY in
