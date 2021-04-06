@@ -7,5 +7,6 @@ RUN pip install -Iv rsa==4.0
 RUN pip install rdpy==1.3.2
 COPY . /honeypot
 WORKDIR /honeypot
+EXPOSE 21 22 23 25 53 80 110 143 443 445 1080 3306 3389 5900 6379 8080
 RUN ["chmod","+x","/honeypot/start.py"]
 ENTRYPOINT ["python","/honeypot/start.py"]
