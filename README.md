@@ -28,13 +28,27 @@ Customizable honeypots for monitoring network traffic, bots activities and usern
 - & More features to Explore
 
 ## Install and run
+#### On ubuntu 18 or 19 System (Auto-configure test)
+```bash
+git clone https://github.com/qeeqbox/chameleon.git
+cd chameleon
+chmod +x ./run.sh
+./run.sh auto_configure_test
+```
+The Grafana interface http://localhost:3000 will open automatically after finishing the initialization process (username is admin and passowrd is admin). If you don't see Chameleon dashboard, click on the search icon in the left bar and add it
+
 #### On ubuntu 18 or 19 System (Auto-configure)
 ```bash
+#You may need to disable systemd-resolved
+#sudo systemctl stop systemd-resolved
+#sudo systemctl disable systemd-resolved
+
 git clone https://github.com/qeeqbox/chameleon.git
 cd chameleon
 chmod +x ./run.sh
 ./run.sh auto_configure
 ```
+
 The Grafana interface http://localhost:3000 will open automatically after finishing the initialization process (username is changeme457f6460cb287 and passowrd is changemed23b8cc6a20e0). If you don't see Chameleon dashboard, click on the search icon in the left bar and add it.
 
 Wait for a few seconds until honeypot shows the IP address
@@ -50,15 +64,6 @@ ping 172.19.0.3
 or run any network tool against it
 nmap 172.19.0.3
 ```
-
-#### On ubuntu 18 or 19 System (Auto-configure test)
-```bash
-git clone https://github.com/qeeqbox/chameleon.git
-cd chameleon
-chmod +x ./run.sh
-./run.sh auto_configure_test
-```
-The Grafana interface http://localhost:3000 will open automatically after finishing the initialization process (username is admin and passowrd is admin). If you don't see Chameleon dashboard, click on the search icon in the left bar and add it
 
 #### Or, import your desired non-blocking server as object (SSH Server)
 ```bash
