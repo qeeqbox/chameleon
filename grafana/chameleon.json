@@ -119,7 +119,7 @@
           "group": [],
           "metricColumn": "data->>''",
           "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%ssh_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%ssh_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
           "refId": "A",
           "select": [
             [
@@ -248,7 +248,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%http_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%http_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
           "refId": "A",
           "select": [
             [
@@ -375,7 +375,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%https_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%https_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
           "refId": "A",
           "select": [
             [
@@ -701,7 +701,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%ftp_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%ftp_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
           "refId": "A",
           "select": [
             [
@@ -829,7 +829,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%smtp_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%smtp_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
           "refId": "A",
           "select": [
             [
@@ -957,7 +957,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%pop3_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%pop3_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
           "refId": "A",
           "select": [
             [
@@ -1152,7 +1152,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%rdp_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%rdp_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
           "refId": "A",
           "select": [
             [
@@ -1280,7 +1280,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%smb_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%smb_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
           "refId": "A",
           "select": [
             [
@@ -1408,7 +1408,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%postgres_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%postgres_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
           "refId": "A",
           "select": [
             [
@@ -1603,7 +1603,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%telnet_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%telnet_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
           "refId": "A",
           "select": [
             [
@@ -1730,7 +1730,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%socks5_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%socks5_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
           "refId": "A",
           "select": [
             [
@@ -1858,7 +1858,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%mysql_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%mysql_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
           "refId": "A",
           "select": [
             [
@@ -2119,7 +2119,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%vnc_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%vnc_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
           "refId": "A",
           "select": [
             [
@@ -2247,7 +2247,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%redis_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%redis_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
           "refId": "A",
           "select": [
             [
@@ -2505,7 +2505,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__time(date),\n  (data->'sniffer'->>'memory')::float as sniffer,\n  (data->'ftp_server'->>'memory')::float as ftp,\n  (data->'dns_server'->>'memory')::float as dns,\n  (data->'http_server'->>'memory')::float as http,\n  (data->'https_server'->>'memory')::float as https,\n  (data->'http_proxy_server'->>'memory')::float as http,\n  (data->'pop3_server'->>'memory')::float as pop3,\n  (data->'imap_server'->>'memory')::float as imap,\n  (data->'rdp_server'->>'memory')::float as rdp,\n  (data->'smb_server'->>'memory')::float as smb,\n  (data->'smtp_server'->>'memory')::float as smtp,\n  (data->'vnc_server'->>'memory')::float as vnc,\n  (data->'ssh_server'->>'memory')::float as ssh,\n  (data->'socks5_server'->>'memory')::float as socks5,\n  (data->'telnet_server'->>'memory')::float as telnet,\n  (data->'redis_server'->>'memory')::float as redis,\n  (data->'mysql_server'->>'memory')::float as mysql,\n  (data->'postgres_server'->>'memory')::float as postgres\nFROM\n  system_table\n  system_table\nWHERE\n  $__timeFilter(date) ",
+          "rawSql": "SELECT\n  $__time(date),\n  (data->'QBSniffer'->>'memory')::float as sniffer,\n  (data->'QFTPServer'->>'memory')::float as ftp,\n  (data->'QDNSServer'->>'memory')::float as dns,\n  (data->'QHTTPServer'->>'memory')::float as http,\n  (data->'QHTTPSServer'->>'memory')::float as https,\n  (data->'QHTTPProxyServer'->>'memory')::float as httpproxy,\n  (data->'QTPOP3Server'->>'memory')::float as pop3,\n  (data->'QIMAPServer'->>'memory')::float as imap,\n  (data->'rdp_server'->>'memory')::float as rdp,\n  (data->'QSMBServer'->>'memory')::float as smb,\n  (data->'QSMTPServer'->>'memory')::float as smtp,\n  (data->'QVNCServer'->>'memory')::float as vnc,\n  (data->'QSSHServer'->>'memory')::float as ssh,\n  (data->'QSOCKS5Server'->>'memory')::float as socks5,\n  (data->'QTelnetServer'->>'memory')::float as telnet,\n  (data->'QRedisServer'->>'memory')::float as redis,\n  (data->'QMysqlServer'->>'memory')::float as mysql,\n  (data->'QPostgresServer'->>'memory')::float as postgres\nFROM\n  system_table\n  system_table\nWHERE\n  $__timeFilter(date) ",
           "refId": "A",
           "select": [
             [
@@ -2767,7 +2767,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__time(date),\n  (data->'sniffer'->>'cpu')::float as sniffer,\n  (data->'ftp_server'->>'cpu')::float as ftp,\n  (data->'dns_server'->>'cpu')::float as dns,\n  (data->'http_server'->>'cpu')::float as http,\n  (data->'https_server'->>'cpu')::float as https,\n  (data->'http_proxy_server'->>'cpu')::float as http,\n  (data->'pop3_server'->>'cpu')::float as pop3,\n  (data->'imap_server'->>'cpu')::float as imap,\n  (data->'rdp_server'->>'cpu')::float as rdp,\n  (data->'smb_server'->>'cpu')::float as smb,\n  (data->'smtp_server'->>'cpu')::float as smtp,\n  (data->'vnc_server'->>'cpu')::float as vnc,\n  (data->'ssh_server'->>'cpu')::float as ssh,\n  (data->'socks5_server'->>'cpu')::float as socks5,\n  (data->'telnet_server'->>'cpu')::float as telnet,\n  (data->'redis_server'->>'cpu')::float as redis,\n  (data->'mysql_server'->>'cpu')::float as mysql,\n  (data->'postgres_server'->>'cpu')::float as postgres\nFROM\n  system_table\nWHERE\n  $__timeFilter(date) ",
+          "rawSql": "SELECT\n  $__time(date),\n  (data->'QBSniffer'->>'cpu')::float as sniffer,\n  (data->'QFTPServer'->>'cpu')::float as ftp,\n  (data->'QDNSServer'->>'cpu')::float as dns,\n  (data->'QHTTPServer'->>'cpu')::float as http,\n  (data->'QHTTPSServer'->>'cpu')::float as https,\n  (data->'QHTTPProxyServer'->>'cpu')::float as http,\n  (data->'QTPOP3Server'->>'cpu')::float as pop3,\n  (data->'QIMAPServer'->>'cpu')::float as imap,\n  (data->'rdp_server'->>'cpu')::float as rdp,\n  (data->'QSMBServer'->>'cpu')::float as smb,\n  (data->'QSMTPServer'->>'cpu')::float as smtp,\n  (data->'QVNCServer'->>'cpu')::float as vnc,\n  (data->'QSSHServer'->>'cpu')::float as ssh,\n  (data->'QSOCKS5Server'->>'cpu')::float as socks5,\n  (data->'QTelnetServer'->>'cpu')::float as telnet,\n  (data->'QRedisServer'->>'cpu')::float as redis,\n  (data->'QMysqlServer'->>'cpu')::float as mysql,\n  (data->'QPostgresServer'->>'cpu')::float as postgres\nFROM\n  system_table\nWHERE\n  $__timeFilter(date) ",
           "refId": "A",
           "select": [
             [

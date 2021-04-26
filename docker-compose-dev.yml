@@ -1,8 +1,8 @@
 version: '3.1'
 
 services:
-  honeypot:
-    build: ./honeypot
+  honeypots:
+    build: ./honeypots
     restart: always
     cap_add:
       - NET_ADMIN
@@ -38,7 +38,7 @@ services:
     links:
       - postgres
     depends_on:
-      - honeypot
+      - honeypots
     networks:
       - backend
       - frontend

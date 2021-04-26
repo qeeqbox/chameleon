@@ -1,0 +1,10 @@
+{
+	"logs":"db",
+	"logs_location":"",
+	"host":"chameleon_postgres",
+	"port":9999,
+	"username":"changeme027a088931d22",
+	"password":"changeme0f40773877963",
+	"db":"chameleon",
+	"interface":"eth0"
+}

@@ -18,11 +18,11 @@ xdg-open http://localhost:3000
 }
 
 test_project () {
-	docker-compose -f docker-compose-test.yml up --build
+	docker-compose -f docker-compose-test.yml up --build --remove-orphan
 }
 
 dev_project () {
-	docker-compose -f docker-compose-dev.yml up --build
+	docker-compose -f docker-compose-dev.yml up --build --remove-orphan
 }
 
 stop_containers () {

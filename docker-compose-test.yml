@@ -1,8 +1,10 @@
 version: '3.1'
 
 services:
-  honeypot:
-    build: ./honeypot
+  honeypots:
+    build:
+      context: .
+      dockerfile: ./honeypots-Dockerfile
     restart: always
     cap_add:
       - NET_ADMIN
@@ -11,16 +13,16 @@ services:
     networks:
       - backend
       - frontend
-
+    
   node:
     build:
       context: .
       dockerfile: ./node-Dockerfile
-    command: /honeypot/testing.sh
+    command: /app/testing.sh
     cap_add:
       - NET_ADMIN
     depends_on:
-      - honeypot
+      - honeypots
     networks:
       - backend
       - frontend
@@ -34,7 +36,7 @@ services:
     links:
       - postgres
     depends_on:
-      - honeypot
+      - honeypots
     networks:
       - backend
       - frontend
@@ -46,6 +48,8 @@ services:
     networks:
       - backend
     command: -p 9999
+    ports:
+      - '9999:9999'
     environment:
       POSTGRES_USER: changeme027a088931d22
       POSTGRES_PASSWORD: changeme0f40773877963
