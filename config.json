@@ -6,5 +6,6 @@
 	"username":"changeme027a088931d22",
 	"password":"changeme0f40773877963",
 	"db":"chameleon",
-	"interface":"eth0"
+	"interface":"eth0",
+	"honeypots":"ftp:21,ssh:22,telnet:23,smtp:25,dns:53,http:80,pop3:110,imap:143,https:443,postgres:5432,smb:445,socks5:1080,mysql:3306,vnc:5900,redis:6379,httpproxy:8080"
 }
