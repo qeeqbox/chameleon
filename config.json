@@ -1,11 +1,104 @@
 {
-	"logs":"db",
-	"logs_location":"",
-	"host":"chameleon_postgres",
-	"port":9999,
-	"username":"changeme027a088931d22",
-	"password":"changeme0f40773877963",
-	"db":"chameleon",
-	"interface":"eth0",
-	"honeypots":"ftp:21,ssh:22,telnet:23,smtp:25,dns:53,http:80,pop3:110,imap:143,https:443,postgres:5432,smb:445,socks5:1080,mysql:3306,vnc:5900,redis:6379,httpproxy:8080"
+    "logs": "db",
+    "logs_location": "",
+    "host": "chameleon_postgres",
+    "port": 9999,
+    "username": "changeme027a088931d22",
+    "password": "changeme0f40773877963",
+    "db": "chameleon",
+    "interface": "eth0",
+    "honeypots": {
+        "ftp": {
+            "port": 21,
+            "ip": "0.0.0.0",
+            "username": "test",
+            "password": "test"
+        },
+        "ssh": {
+            "port": 22,
+            "ip": "0.0.0.0",
+            "username": "test",
+            "password": "test"
+        },
+        "telnet": {
+            "port": 23,
+            "ip": "0.0.0.0",
+            "username": "test",
+            "password": "test"
+        },
+        "smtp": {
+            "port": 25,
+            "ip": "0.0.0.0",
+            "username": "test",
+            "password": "test"
+        },
+        "dns": {
+            "port": 53,
+            "ip": "0.0.0.0"
+        },
+        "http": {
+            "port": 80,
+            "ip": "0.0.0.0",
+            "username": "test",
+            "password": "test"
+        },
+        "pop3": {
+            "port": 110,
+            "ip": "0.0.0.0",
+            "username": "test",
+            "password": "test"
+        },
+        "imap": {
+            "port": 143,
+            "ip": "0.0.0.0",
+            "username": "test",
+            "password": "test"
+        },
+        "https": {
+            "port": 443,
+            "ip": "0.0.0.0",
+            "username": "test",
+            "password": "test"
+        },
+        "postgres": {
+            "port": 5432,
+            "ip": "0.0.0.0",
+            "username": "test",
+            "password": "test"
+        },
+        "smb": {
+            "port": 445,
+            "ip": "0.0.0.0",
+            "username": "test",
+            "password": "test"
+        },
+        "socks5": {
+            "port": 1080,
+            "ip": "0.0.0.0",
+            "username": "test",
+            "password": "test"
+        },
+        "mysql": {
+            "port": 3306,
+            "ip": "0.0.0.0",
+            "username": "test",
+            "password": "test"
+        },
+        "vnc": {
+            "port": 5900,
+            "ip": "0.0.0.0",
+            "username": "test",
+            "password": "test"
+        },
+        "redis": {
+            "port": 6379,
+            "ip": "0.0.0.0",
+            "username": "test",
+            "password": "test"
+        },
+        "httpproxy": {
+            "port": 8080,
+            "ip": "0.0.0.0"
+        }
+    }
 }
