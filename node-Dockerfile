@@ -1,6 +1,7 @@
-FROM python:3.6
+FROM python:3.8
 RUN apt-get update -y && apt-get install -y tcpdump nmap iputils-ping python-psycopg2 lsof psmisc dnsutils curl ftp smbclient ssh telnet xtightvncviewer xvfb
-RUN pip3 install honeypots
+RUN pip3 install honeypots==0.23
+RUN pip3 install pebble
 WORKDIR app
 COPY testing.py .
 COPY testing.sh .

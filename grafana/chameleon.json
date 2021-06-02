@@ -15,17 +15,13 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
-  "iteration": 1592806145902,
+  "iteration": 1622669352542,
   "links": [],
   "panels": [
     {
       "datasource": "chameleon",
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -110,9 +106,11 @@
           ],
           "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.3",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "format": "table",
@@ -152,9 +150,6 @@
       "datasource": "chameleon",
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -239,9 +234,11 @@
           ],
           "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.3",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "format": "table",
@@ -279,9 +276,6 @@
       "datasource": "chameleon",
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -366,9 +360,11 @@
           ],
           "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.3",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "format": "table",
@@ -403,6 +399,133 @@
       "type": "stat"
     },
     {
+      "datasource": "chameleon",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "success"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Success"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "failed"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Failed"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 6,
+        "y": 0
+      },
+      "id": 34,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.7",
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%mysql_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "MySQL Login",
+      "type": "stat"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -410,7 +533,7 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "links": []
         },
         "overrides": []
       },
@@ -418,8 +541,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 10,
-        "w": 12,
-        "x": 6,
+        "w": 11,
+        "x": 8,
         "y": 0
       },
       "hiddenSeries": false,
@@ -437,9 +560,10 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.5.7",
       "pointradius": 0.5,
       "points": true,
       "renderer": "flot",
@@ -524,7 +648,8 @@
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "align": null
+            "align": null,
+            "filterable": false
           },
           "mappings": [],
           "thresholds": {
@@ -545,7 +670,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "payload"
+              "options": "ip"
             },
             "properties": [
               {
@@ -558,23 +683,23 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 6,
-        "x": 18,
+        "w": 5,
+        "x": 19,
         "y": 0
       },
-      "id": 15,
+      "id": 16,
       "options": {
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "7.0.3",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "format": "table",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT data->>'src_ip' as ip,\n       data->>'ICMP_MSG' as payload\nFROM   sniffer_table\nWHERE  $__timeFilter(date) AND data->>'action' LIKE '%icmp%' AND (data->>'src_ip') LIKE '%$IP%'\nORDER BY id DESC",
+          "rawSql": "SELECT data->>'src_ip' as ip,\n       data->>'raw_payload' as payload\nFROM   sniffer_table\nWHERE  $__timeFilter(date) AND data->>'action' LIKE '%tcppayload%' AND (data->>'src_ip') LIKE '%$IP%'\nORDER BY id DESC",
           "refId": "A",
           "select": [
             [
@@ -598,16 +723,13 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "ICMP Payload",
+      "title": "TCP Payload",
       "type": "table"
     },
     {
       "datasource": "chameleon",
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -692,9 +814,11 @@
           ],
           "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.3",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "format": "table",
@@ -733,9 +857,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -820,9 +941,11 @@
           ],
           "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.3",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "format": "table",
@@ -861,9 +984,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -948,9 +1068,11 @@
           ],
           "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.3",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "format": "table",
@@ -985,208 +1107,10 @@
       "type": "stat"
     },
     {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": null
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 18,
-        "y": 4
-      },
-      "id": 13,
-      "options": {
-        "showHeader": true
-      },
-      "pluginVersion": "7.0.3",
-      "targets": [
-        {
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT data->>'ip' as ip,\n       data->>'payload' as payload\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%dns_server%' AND (data->>'ip') LIKE '%$IP%'\nORDER BY id DESC",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "DNS Payload",
-      "type": "table"
-    },
-    {
-      "datasource": "chameleon",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": null
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "success"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Success"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": null
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "failed"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Failed"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "red",
-                      "value": null
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 2,
-        "x": 0,
-        "y": 6
-      },
-      "id": 5,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        }
-      },
-      "pluginVersion": "7.0.3",
-      "targets": [
-        {
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%rdp_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "RDP Login",
-      "type": "stat"
-    },
-    {
       "datasource": "chameleon",
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1256,136 +1180,8 @@
       "gridPos": {
         "h": 3,
         "w": 2,
-        "x": 2,
-        "y": 6
-      },
-      "id": 18,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        }
-      },
-      "pluginVersion": "7.0.3",
-      "targets": [
-        {
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%smb_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "SMB Login",
-      "type": "stat"
-    },
-    {
-      "datasource": "chameleon",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": null
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "success"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Success"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": null
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "failed"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Failed"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "red",
-                      "value": null
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 2,
-        "x": 4,
-        "y": 6
+        "x": 6,
+        "y": 3
       },
       "id": 32,
       "options": {
@@ -1399,9 +1195,11 @@
           ],
           "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.3",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "format": "table",
@@ -1440,7 +1238,8 @@
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "align": null
+            "align": null,
+            "filterable": false
           },
           "mappings": [],
           "thresholds": {
@@ -1457,26 +1256,40 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "payload"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": null
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 4,
-        "w": 6,
-        "x": 18,
-        "y": 8
+        "w": 5,
+        "x": 19,
+        "y": 4
       },
-      "id": 14,
+      "id": 15,
       "options": {
-        "showHeader": true
+        "showHeader": true,
+        "sortBy": []
       },
-      "pluginVersion": "7.0.3",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "format": "table",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT data->>'ip' as ip,\n       data->>'payload' as payload\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%http_proxy_server%' AND (data->>'ip') LIKE '%$IP%'\nORDER BY id DESC",
+          "rawSql": "SELECT data->>'src_ip' as ip,\n       data->>'ICMP_MSG' as payload\nFROM   sniffer_table\nWHERE  $__timeFilter(date) AND data->>'action' LIKE '%icmp%' AND (data->>'src_ip') LIKE '%$IP%'\nORDER BY id DESC",
           "refId": "A",
           "select": [
             [
@@ -1500,16 +1313,588 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Proxy Payload",
+      "title": "ICMP Payload",
+      "type": "table"
+    },
+    {
+      "datasource": "chameleon",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "success"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Success"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "failed"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Failed"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 0,
+        "y": 6
+      },
+      "id": 23,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.7",
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%vnc_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "VNC Login",
+      "type": "stat"
+    },
+    {
+      "datasource": "chameleon",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "success"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Success"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "failed"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Failed"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 2,
+        "y": 6
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.7",
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%telnet_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Telnet Login",
+      "type": "stat"
+    },
+    {
+      "datasource": "chameleon",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "success"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Success"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "failed"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Failed"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 4,
+        "y": 6
+      },
+      "id": 29,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.7",
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%socks5_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "SOCKS5 Login",
+      "type": "stat"
+    },
+    {
+      "datasource": "chameleon",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "success"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Success"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "failed"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Failed"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 6,
+        "y": 6
+      },
+      "id": 31,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.7",
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%redis_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Redis Login",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null,
+            "filterable": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 19,
+        "y": 8
+      },
+      "id": 13,
+      "options": {
+        "showHeader": true
+      },
+      "pluginVersion": "7.5.7",
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT data->>'ip' as ip,\n       data->>'payload' as payload\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%dns_server%' AND (data->>'ip') LIKE '%$IP%'\nORDER BY id DESC",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "DNS Payload",
       "type": "table"
     },
     {
       "datasource": "chameleon",
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1582,7 +1967,7 @@
         "x": 0,
         "y": 9
       },
-      "id": 6,
+      "id": 5,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1594,16 +1979,18 @@
           ],
           "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.3",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "format": "table",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%telnet_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%rdp_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
           "refId": "A",
           "select": [
             [
@@ -1627,16 +2014,14 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Telnet Login",
+      "title": "RDP Login",
       "type": "stat"
     },
     {
       "datasource": "chameleon",
+      "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1709,7 +2094,7 @@
         "x": 2,
         "y": 9
       },
-      "id": 29,
+      "id": 35,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1721,16 +2106,18 @@
           ],
           "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.3",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "format": "table",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%socks5_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%mssql_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
           "refId": "A",
           "select": [
             [
@@ -1754,7 +2141,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "SOCKS5 Login",
+      "title": "MSSQL Login",
       "type": "stat"
     },
     {
@@ -1762,9 +2149,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1837,7 +2221,7 @@
         "x": 4,
         "y": 9
       },
-      "id": 33,
+      "id": 18,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1849,16 +2233,18 @@
           ],
           "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.3",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "format": "table",
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%mysql_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%smb_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
           "refId": "A",
           "select": [
             [
@@ -1882,20 +2268,14 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "MySQL Login",
+      "title": "SMB Login",
       "type": "stat"
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
+      "datasource": "chameleon",
+      "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1911,14 +2291,131 @@
             ]
           }
         },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "success"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Success"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "failed"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Failed"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 6,
+        "y": 9
+      },
+      "id": 33,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.7",
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%elastic_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Elastic Login",
+      "type": "stat"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
         "overrides": []
       },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 5,
-        "w": 12,
-        "x": 6,
+        "w": 11,
+        "x": 8,
         "y": 10
       },
       "hiddenSeries": false,
@@ -1936,10 +2433,10 @@
       "linewidth": 1,
       "nullPointMode": "connected",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.0.3",
+      "pluginVersion": "7.5.7",
       "pointradius": 0.5,
       "points": false,
       "renderer": "flot",
@@ -2019,349 +2516,12 @@
       }
     },
     {
-      "datasource": "chameleon",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": null
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "success"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Success"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": null
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "failed"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Failed"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "red",
-                      "value": null
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 2,
-        "x": 0,
-        "y": 12
-      },
-      "id": 23,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        }
-      },
-      "pluginVersion": "7.0.3",
-      "targets": [
-        {
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%vnc_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "VNC Login",
-      "type": "stat"
-    },
-    {
-      "datasource": "chameleon",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": null
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "success"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Success"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": null
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "failed"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Failed"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "red",
-                      "value": null
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 2,
-        "x": 2,
-        "y": 12
-      },
-      "id": 31,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        }
-      },
-      "pluginVersion": "7.0.3",
-      "targets": [
-        {
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%redis_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Redis Login",
-      "type": "stat"
-    },
-    {
       "datasource": null,
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "align": null
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "ip"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": null
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 18,
-        "y": 12
-      },
-      "id": 16,
-      "options": {
-        "showHeader": true,
-        "sortBy": []
-      },
-      "pluginVersion": "7.0.3",
-      "targets": [
-        {
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT data->>'src_ip' as ip,\n       data->>'raw_payload' as payload\nFROM   sniffer_table\nWHERE  $__timeFilter(date) AND data->>'action' LIKE '%tcppayload%' AND (data->>'src_ip') LIKE '%$IP%'\nORDER BY id DESC",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "TCP Payload",
-      "type": "table"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": null
+            "align": null,
+            "filterable": false
           },
           "mappings": [],
           "thresholds": {
@@ -2394,16 +2554,16 @@
         ]
       },
       "gridPos": {
-        "h": 5,
-        "w": 6,
+        "h": 7,
+        "w": 8,
         "x": 0,
-        "y": 15
+        "y": 12
       },
       "id": 30,
       "options": {
         "showHeader": true
       },
-      "pluginVersion": "7.0.3",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "format": "table",
@@ -2438,15 +2598,12 @@
       "type": "table"
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": null,
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "align": null
+            "align": null,
+            "filterable": false
           },
           "mappings": [],
           "thresholds": {
@@ -2465,12 +2622,68 @@
         },
         "overrides": []
       },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 19,
+        "y": 12
+      },
+      "id": 14,
+      "options": {
+        "showHeader": true
+      },
+      "pluginVersion": "7.5.7",
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT data->>'ip' as ip,\n       data->>'payload' as payload\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%http_proxy_server%' AND (data->>'ip') LIKE '%$IP%'\nORDER BY id DESC",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Proxy Payload",
+      "type": "table"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 5,
-        "w": 12,
-        "x": 6,
+        "w": 11,
+        "x": 8,
         "y": 15
       },
       "hiddenSeries": false,
@@ -2488,10 +2701,10 @@
       "linewidth": 1,
       "nullPointMode": "connected",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.0.3",
+      "pluginVersion": "7.5.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2573,7 +2786,8 @@
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "align": null
+            "align": null,
+            "filterable": false
           },
           "mappings": [],
           "thresholds": {
@@ -2594,15 +2808,15 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 6,
-        "x": 18,
+        "w": 5,
+        "x": 19,
         "y": 16
       },
       "id": 17,
       "options": {
         "showHeader": true
       },
-      "pluginVersion": "7.0.3",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "format": "table",
@@ -2641,7 +2855,8 @@
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "align": null
+            "align": null,
+            "filterable": false
           },
           "mappings": [],
           "thresholds": {
@@ -2674,16 +2889,16 @@
         ]
       },
       "gridPos": {
-        "h": 5,
-        "w": 6,
+        "h": 6,
+        "w": 8,
         "x": 0,
-        "y": 20
+        "y": 19
       },
       "id": 26,
       "options": {
         "showHeader": true
       },
-      "pluginVersion": "7.0.3",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "format": "table",
@@ -2721,9 +2936,6 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -2743,8 +2955,8 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 12,
-        "x": 6,
+        "w": 11,
+        "x": 8,
         "y": 20
       },
       "id": 20,
@@ -2758,9 +2970,10 @@
           "fields": "",
           "values": false
         },
-        "showUnfilled": true
+        "showUnfilled": true,
+        "text": {}
       },
-      "pluginVersion": "7.0.3",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "format": "table",
@@ -2797,35 +3010,18 @@
     {
       "datasource": null,
       "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": null
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
+        "defaults": {},
         "overrides": []
       },
       "gridPos": {
         "h": 5,
-        "w": 6,
-        "x": 18,
+        "w": 5,
+        "x": 19,
         "y": 20
       },
       "id": 28,
       "options": {
+        "dedupStrategy": "none",
         "showLabels": false,
         "showTime": true,
         "sortOrder": "Descending",
@@ -2867,7 +3063,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 25,
+  "schemaVersion": 27,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -2875,12 +3071,15 @@
       {
         "allValue": "\"\"",
         "current": {
+          "isNone": true,
           "selected": true,
-          "text": "172.19.0.3",
-          "value": "172.19.0.3"
+          "text": "None",
+          "value": ""
         },
         "datasource": "chameleon",
         "definition": "SELECT\n  (data->>'src_ip')\nFROM\n  sniffer_table\nLIMIT 1",
+        "description": null,
+        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "IP",
@@ -2901,7 +3100,7 @@
     ]
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {

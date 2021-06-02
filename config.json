@@ -99,6 +99,18 @@
         "httpproxy": {
             "port": 8080,
             "ip": "0.0.0.0"
+        },
+        "elastic": {
+            "port": 9200,
+            "ip": "0.0.0.0",
+            "username": "elastic",
+            "password": "test"
+        },
+        "mssql": {
+            "port": 1433,
+            "ip": "0.0.0.0",
+            "username": "test",
+            "password": "test"
         }
     }
 }
