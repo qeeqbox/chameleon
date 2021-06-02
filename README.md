@@ -3,8 +3,9 @@
 #
 [![Generic badge](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/qeeqbox/chameleon/master/info&label=version&query=$.version&colorB=blue&style=flat-square)](https://github.com/qeeqbox/chameleon/blob/master/changes.md) [![Generic badge](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/qeeqbox/chameleon/master/info&label=build&query=$.dockercomposebuild&colorB=green&style=flat-square)](https://github.com/qeeqbox/chameleon/blob/master/changes.md) [![Generic badge](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/qeeqbox/chameleon/master/info&label=test&query=$.automatedtest&colorB=green&style=flat-square)](https://github.com/qeeqbox/chameleon/blob/master/changes.md) [![Generic badge](https://img.shields.io/static/v1?label=%F0%9F%91%8D&message=!&color=yellow&style=flat-square)](https://github.com/qeeqbox/chameleon/stargazers)
 
-
 Customizable honeypots for monitoring network traffic, bots activities and username\password credentials (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP, VNC, SMB, SOCKS5, Redis, TELNET and Postgres and MySQL)
+
+`"Chameleon is considered very effective. This is an active defense tool. The system simulates open unprotected ports and takes on attempts to find vulnerabilities"` - by [cooltechzone](https://cooltechzone.com/malware-removal/most-dangerous-malware-in-2021)
 
 ## Grafana Interface
 <img src="https://raw.githubusercontent.com/qeeqbox/chameleon/master/readme/intro.png" style="max-width:768px"/>
@@ -150,7 +151,7 @@ pip install rdpy==1.3.2
 ## Other Licenses
 By using this framework, you are accepting the license terms of all these packages: `grafana, tcpdump, nmap, psycopg, dnsutils, scapy, netifaces, pyftpdlib, sqlalchemy, pyyaml, paramiko, impacket, rdpy, psutil, requests, FreeRDP, SMBClient, tigervnc`
 
-## Some Articles
+## Some News\Articles
 [kitploit](https://www.kitploit.com/2021/03/chameleon-customizable-honeypots-for.html) [redteaming](https://redteaming.net/pages/201db2/) [my-infosec-awesome](https://github.com/pe3zx/my-infosec-awesome) [blackhatethicalhacking](https://www.blackhatethicalhacking.com/tools/chameleon/) [securityonline](https://securityonline.info/chameleon-customizable-honeypots-for-monitoring-network-traffic-bots-activities/) [redpacketsecurity](https://www.redpacketsecurity.com/chameleon-customizable-honeypots-for-monitoring-network-traffic-bots-activities-and-usernamepassword-credentials-dns-http-proxy-http-https-ssh-pop3-imap-stmp-rdp-vnc-smb-socks5-redis/)
 
 ## Disclaimer\Notes
