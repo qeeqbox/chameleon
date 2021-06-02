@@ -124,7 +124,8 @@ pip install rdpy==1.3.2
 - Postgres (Emulator using Twisted)
 - Redis (Emulator using Twisted)
 - Mysql (Emulator using Twisted)
-- Elasticsearch (Coming..)
+- Elasticsearch (Emulator using http.server)
+- Mssql (Emulator using Twisted)
 - Oracle (Coming..)
 - ldap (maybe)
 
