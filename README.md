@@ -29,16 +29,16 @@
 - & More features to Explore
 
 ## Install and run
-#### On ubuntu 18 or 19 System (Auto-configure test)
+#### On ubuntu 18 or 19 System (test)
 ```bash
 git clone https://github.com/qeeqbox/chameleon.git
 cd chameleon
 chmod +x ./run.sh
-./run.sh auto_configure_test
+./run.sh test
 ```
 The Grafana interface http://localhost:3000 will open automatically after finishing the initialization process (username is admin and passowrd is admin). If you don't see Chameleon dashboard, click on the search icon in the left bar and add it
 
-#### On ubuntu 18 or 19 System (Auto-configure)
+#### On ubuntu 18 or 19 System (Deploy)
 ```bash
 #You may need to disable systemd-resolved
 #sudo systemctl stop systemd-resolved
@@ -47,7 +47,7 @@ The Grafana interface http://localhost:3000 will open automatically after finish
 git clone https://github.com/qeeqbox/chameleon.git
 cd chameleon
 chmod +x ./run.sh
-./run.sh auto_configure
+./run.sh deploy
 ```
 
 The Grafana interface http://localhost:3000 will open automatically after finishing the initialization process (username is changeme457f6460cb287 and passowrd is changemed23b8cc6a20e0). If you don't see Chameleon dashboard, click on the search icon in the left bar and add it.
@@ -67,31 +67,7 @@ nmap 172.19.0.3
 ```
 
 #### Or, import your desired non-blocking server as object (SSH Server)
-```bash
-copy ssh_server.py to your folder
-```
-```python
-# ip= String E.g. 0.0.0.0
-# port= Int E.g. 9999
-# username= String E.g. Test
-# password= String E.g. Test
-# mocking= Boolean or String E.g OpenSSH 7.0
-# logs= String E.g db, terminal or all
-# --------------------------------------------------------------------
-# always remember to add process=true to run_server() for non-blocking
-
-from ssh_server import QSSHServer
-qsshserver = QSSHServer(port=9999)
-qsshserver.run_server(process=True)
-qsshserver.test_server(port=9999)
-qsshserver.kill_server()
-```
-``` bash
-ssh test@127.0.0.1
-```
-``` bash
-INFO:chameleonlogger:['servers', {'status': 'success', 'username': 'test', 'ip': '127.0.0.1', 'server': 'ssh_server', 'action': 'login', 'password': 'test', 'port': 38696}]
-```
+You can do that by using this package [honeypots](https://github.com/qeeqbox/honeypots)
 
 ## If you don't see Chameleon dashboard, click on the search icon in the left bar and add it 
 <img src="https://raw.githubusercontent.com/qeeqbox/chameleon/master/readme/find.png" style="max-width:768px"/>
