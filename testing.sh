@@ -1,6 +1,6 @@
 #!/bin/bash
 echo -e "[x] Test will run in 120 Secs\n"
-sleep 120
+sleep 30
 honeypots --test --config config_test.json --ip `getent hosts honeypots | awk '{print $1}'` --chameleon
 echo "[x] Testing Ping"
 ping -c 4 honeypots
