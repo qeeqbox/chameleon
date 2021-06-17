@@ -40,10 +40,6 @@ The Grafana interface http://localhost:3000 will open automatically after finish
 
 #### On ubuntu 18 or 19 System (Deploy)
 ```bash
-#You may need to disable systemd-resolved
-#sudo systemctl stop systemd-resolved
-#sudo systemctl disable systemd-resolved
-
 git clone https://github.com/qeeqbox/chameleon.git
 cd chameleon
 chmod +x ./run.sh
