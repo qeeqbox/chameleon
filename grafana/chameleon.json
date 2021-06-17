@@ -15,7 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1622669352542,
+  "id": 1,
+  "iteration": 1623887687769,
   "links": [],
   "panels": [
     {
@@ -649,6 +650,7 @@
         "defaults": {
           "custom": {
             "align": null,
+            "displayMode": "auto",
             "filterable": false
           },
           "mappings": [],
@@ -1239,6 +1241,7 @@
         "defaults": {
           "custom": {
             "align": null,
+            "displayMode": "auto",
             "filterable": false
           },
           "mappings": [],
@@ -1828,6 +1831,7 @@
         "defaults": {
           "custom": {
             "align": null,
+            "displayMode": "auto",
             "filterable": false
           },
           "mappings": [],
@@ -2516,13 +2520,10 @@
       }
     },
     {
-      "datasource": null,
+      "datasource": "chameleon",
+      "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null,
-            "filterable": false
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -2542,26 +2543,74 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "username"
+              "options": "success"
             },
             "properties": [
               {
-                "id": "custom.width",
-                "value": null
+                "id": "displayName",
+                "value": "Success"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "failed"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Failed"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    }
+                  ]
+                }
               }
             ]
           }
         ]
       },
       "gridPos": {
-        "h": 7,
-        "w": 8,
+        "h": 3,
+        "w": 2,
         "x": 0,
         "y": 12
       },
-      "id": 30,
+      "id": 36,
       "options": {
-        "showHeader": true
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
       },
       "pluginVersion": "7.5.7",
       "targets": [
@@ -2570,7 +2619,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT data->>'ip' as ip,\n       data->>'username' as username,\n       data->>'password' as password,\n       data->>'server' as server\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'action' LIKE '%login%' AND data->>'ip' <> ''  AND (data->>'ip') LIKE '%$IP%'\nORDER BY id DESC",
+          "rawSql": "SELECT count(id) filter (WHERE data->>'status' LIKE '%success%' AND data->>'action' LIKE '%login%') AS success,\n       count(id) filter (WHERE data->>'status' LIKE '%failed%' AND data->>'action' LIKE '%login%') AS failed\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'server' LIKE '%ldap_server%' AND data->>'status'  <> '' AND (data->>'ip') LIKE '%$IP%'",
           "refId": "A",
           "select": [
             [
@@ -2594,8 +2643,8 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "All Creds",
-      "type": "table"
+      "title": "Ldap Login",
+      "type": "stat"
     },
     {
       "datasource": null,
@@ -2603,6 +2652,7 @@
         "defaults": {
           "custom": {
             "align": null,
+            "displayMode": "auto",
             "filterable": false
           },
           "mappings": [],
@@ -2667,6 +2717,89 @@
       "type": "table"
     },
     {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null,
+            "displayMode": "auto",
+            "filterable": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "username"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": null
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 0,
+        "y": 15
+      },
+      "id": 30,
+      "options": {
+        "showHeader": true
+      },
+      "pluginVersion": "7.5.7",
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT data->>'ip' as ip,\n       data->>'username' as username,\n       data->>'password' as password,\n       data->>'server' as server\nFROM   servers_table\nWHERE  $__timeFilter(date) AND data->>'action' LIKE '%login%' AND data->>'ip' <> ''  AND (data->>'ip') LIKE '%$IP%'\nORDER BY id DESC",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "All Creds",
+      "type": "table"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -2718,7 +2851,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__time(date),\n  (data->'QBSniffer'->>'memory')::float as sniffer,\n  (data->'QFTPServer'->>'memory')::float as ftp,\n  (data->'QDNSServer'->>'memory')::float as dns,\n  (data->'QHTTPServer'->>'memory')::float as http,\n  (data->'QHTTPSServer'->>'memory')::float as https,\n  (data->'QHTTPProxyServer'->>'memory')::float as httpproxy,\n  (data->'QTPOP3Server'->>'memory')::float as pop3,\n  (data->'QIMAPServer'->>'memory')::float as imap,\n  (data->'rdp_server'->>'memory')::float as rdp,\n  (data->'QSMBServer'->>'memory')::float as smb,\n  (data->'QSMTPServer'->>'memory')::float as smtp,\n  (data->'QVNCServer'->>'memory')::float as vnc,\n  (data->'QSSHServer'->>'memory')::float as ssh,\n  (data->'QSOCKS5Server'->>'memory')::float as socks5,\n  (data->'QTelnetServer'->>'memory')::float as telnet,\n  (data->'QRedisServer'->>'memory')::float as redis,\n  (data->'QMysqlServer'->>'memory')::float as mysql,\n  (data->'QPostgresServer'->>'memory')::float as postgres\nFROM\n  system_table\n  system_table\nWHERE\n  $__timeFilter(date) ",
+          "rawSql": "SELECT\n  $__time(date),\n  (data->'QBSniffer'->>'memory')::float as sniffer,\n  (data->'QFTPServer'->>'memory')::float as ftp,\n  (data->'QDNSServer'->>'memory')::float as dns,\n  (data->'QHTTPServer'->>'memory')::float as http,\n  (data->'QHTTPSServer'->>'memory')::float as https,\n  (data->'QHTTPProxyServer'->>'memory')::float as httpproxy,\n  (data->'QTPOP3Server'->>'memory')::float as pop3,\n  (data->'QIMAPServer'->>'memory')::float as imap,\n  (data->'QRDPServer'->>'memory')::float as rdp,\n  (data->'QSMBServer'->>'memory')::float as smb,\n  (data->'QSMTPServer'->>'memory')::float as smtp,\n  (data->'QVNCServer'->>'memory')::float as vnc,\n  (data->'QSSHServer'->>'memory')::float as ssh,\n  (data->'QSOCKS5Server'->>'memory')::float as socks5,\n  (data->'QTelnetServer'->>'memory')::float as telnet,\n  (data->'QRedisServer'->>'memory')::float as redis,\n  (data->'QMysqlServer'->>'memory')::float as mysql,\n  (data->'QPostgresServer'->>'memory')::float as postgres,\n  (data->'QLDAPServer'->>'memory')::float as ldap\nFROM\n  system_table\n  system_table\nWHERE\n  $__timeFilter(date) ",
           "refId": "A",
           "select": [
             [
@@ -2787,6 +2920,7 @@
         "defaults": {
           "custom": {
             "align": null,
+            "displayMode": "auto",
             "filterable": false
           },
           "mappings": [],
@@ -2856,6 +2990,7 @@
         "defaults": {
           "custom": {
             "align": null,
+            "displayMode": "auto",
             "filterable": false
           },
           "mappings": [],
@@ -2889,10 +3024,10 @@
         ]
       },
       "gridPos": {
-        "h": 6,
+        "h": 5,
         "w": 8,
         "x": 0,
-        "y": 19
+        "y": 20
       },
       "id": 26,
       "options": {
@@ -2980,7 +3115,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__time(date),\n  (data->'QBSniffer'->>'cpu')::float as sniffer,\n  (data->'QFTPServer'->>'cpu')::float as ftp,\n  (data->'QDNSServer'->>'cpu')::float as dns,\n  (data->'QHTTPServer'->>'cpu')::float as http,\n  (data->'QHTTPSServer'->>'cpu')::float as https,\n  (data->'QHTTPProxyServer'->>'cpu')::float as http,\n  (data->'QTPOP3Server'->>'cpu')::float as pop3,\n  (data->'QIMAPServer'->>'cpu')::float as imap,\n  (data->'rdp_server'->>'cpu')::float as rdp,\n  (data->'QSMBServer'->>'cpu')::float as smb,\n  (data->'QSMTPServer'->>'cpu')::float as smtp,\n  (data->'QVNCServer'->>'cpu')::float as vnc,\n  (data->'QSSHServer'->>'cpu')::float as ssh,\n  (data->'QSOCKS5Server'->>'cpu')::float as socks5,\n  (data->'QTelnetServer'->>'cpu')::float as telnet,\n  (data->'QRedisServer'->>'cpu')::float as redis,\n  (data->'QMysqlServer'->>'cpu')::float as mysql,\n  (data->'QPostgresServer'->>'cpu')::float as postgres\nFROM\n  system_table\nWHERE\n  $__timeFilter(date) ",
+          "rawSql": "SELECT\n  $__time(date),\n  (data->'QBSniffer'->>'cpu')::float as sniffer,\n  (data->'QFTPServer'->>'cpu')::float as ftp,\n  (data->'QDNSServer'->>'cpu')::float as dns,\n  (data->'QHTTPServer'->>'cpu')::float as http,\n  (data->'QHTTPSServer'->>'cpu')::float as https,\n  (data->'QHTTPProxyServer'->>'cpu')::float as httpproxy,\n  (data->'QTPOP3Server'->>'cpu')::float as pop3,\n  (data->'QIMAPServer'->>'cpu')::float as imap,\n  (data->'QRDPServer'->>'cpu')::float as rdp,\n  (data->'QSMBServer'->>'cpu')::float as smb,\n  (data->'QSMTPServer'->>'cpu')::float as smtp,\n  (data->'QVNCServer'->>'cpu')::float as vnc,\n  (data->'QSSHServer'->>'cpu')::float as ssh,\n  (data->'QSOCKS5Server'->>'cpu')::float as socks5,\n  (data->'QTelnetServer'->>'cpu')::float as telnet,\n  (data->'QRedisServer'->>'cpu')::float as redis,\n  (data->'QMysqlServer'->>'cpu')::float as mysql,\n  (data->'QPostgresServer'->>'cpu')::float as postgres,\n  (data->'QLDAPServer'->>'cpu')::float as ldap\nFROM\n  system_table\nWHERE\n  $__timeFilter(date) ",
           "refId": "A",
           "select": [
             [
@@ -3022,6 +3157,7 @@
       "id": 28,
       "options": {
         "dedupStrategy": "none",
+        "enableLogDetails": true,
         "showLabels": false,
         "showTime": true,
         "sortOrder": "Descending",
@@ -3062,7 +3198,7 @@
       "type": "logs"
     }
   ],
-  "refresh": false,
+  "refresh": "5s",
   "schemaVersion": 27,
   "style": "dark",
   "tags": [],
@@ -3072,7 +3208,7 @@
         "allValue": "\"\"",
         "current": {
           "isNone": true,
-          "selected": true,
+          "selected": false,
           "text": "None",
           "value": ""
         },
@@ -3100,11 +3236,12 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
+      "5s",
       "10s",
       "30s",
       "1m",

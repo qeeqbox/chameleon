@@ -5,42 +5,16 @@ services:
     build:
       context: .
       dockerfile: ./honeypots-Dockerfile
-      args:
-        PORTS: ${PORTS}
     restart: always
     cap_add:
       - NET_ADMIN
     depends_on:
       - postgres
-      - syslog
     networks:
       - backend
       - frontend
-
-  syslog:
-    build:
-      context: .
-      dockerfile: ./syslog-Dockerfile
-    command: /usr/sbin/syslog-ng -F -f /etc/syslog-ng/syslog-ng.conf
-    cap_add:
-      - NET_ADMIN
-    networks:
-      - backend
-      - frontend
-
-  node:
-    build:
-      context: .
-      dockerfile: ./node-Dockerfile
-    command: /app/testing.sh
-    cap_add:
-      - NET_ADMIN
-    depends_on:
-      - honeypots
-      - syslog
-    networks:
-      - backend
-      - frontend
+    ports:
+      {temp}
 
   grafana:
     build: ./grafana
@@ -55,6 +29,9 @@ services:
     networks:
       - backend
       - frontend
+    environment:
+      GF_SECURITY_ADMIN_USER: changeme457f6460cb287
+      GF_SECURITY_ADMIN_PASSWORD: changemed23b8cc6a20e0
     logging:
         driver: none
 
@@ -64,10 +41,7 @@ services:
     restart: always
     networks:
       - backend
-      - frontend
     command: -p 9999
-    ports:
-      - '9999:9999'
     environment:
       POSTGRES_USER: changeme027a088931d22
       POSTGRES_PASSWORD: changeme0f40773877963

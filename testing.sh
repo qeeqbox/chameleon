@@ -1,17 +1,14 @@
 #!/bin/bash
-until $(curl --output /dev/null --silent --head --fail http://honeypots/login); do
-    echo 'Waiting on servers to load..'
-    sleep 5
-done
-echo "Testing Ping"
+echo -e "[x] Test will run in 120 Secs\n"
+sleep 120
+honeypots --test --config config_test.json --ip `getent hosts honeypots | awk '{print $1}'` --chameleon
+echo "[x] Testing Ping"
 ping -c 4 honeypots
-echo "Settings up Virtual framebuffer "
+echo "[x] Settings up Virtual framebuffer "
 Xvfb :100 & 
 sleep 5
 export DISPLAY=:100
-echo "Testing QVNCServer"
+echo "[x] Testing QVNCServer"
 echo "test" | vncviewer -autopass honeypots
-python3 testing.py
-echo "Testing NMAP #1"
+echo "[x] Testing NMAP #1"
 nmap honeypots
-#nmap honeypots -sV -sS -PN -O -T4 --top-ports 250
