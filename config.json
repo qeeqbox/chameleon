@@ -1,5 +1,5 @@
 {
-    "logs": "db,syslog",
+    "logs": "db",
     "logs_location": "",
     "syslog_address":"udp://syslog:514",
     "syslog_facility":3,
