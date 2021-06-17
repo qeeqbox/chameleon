@@ -8,7 +8,7 @@
 `"Chameleon is considered very effective. This is an active defense tool. The system simulates open unprotected ports and takes on attempts to find vulnerabilities"` - by [cooltechzone](https://cooltechzone.com/malware-removal/most-dangerous-malware-in-2021)
 
 ## Grafana Interface
-<img src="https://raw.githubusercontent.com/qeeqbox/chameleon/master/readme/intro.png" style="max-width:768px"/>
+<img src="https://raw.githubusercontent.com/qeeqbox/chameleon/master/readme/intro.gif" style="max-width:768px"/>
 
 #### NMAP Scan
 <img src="https://raw.githubusercontent.com/qeeqbox/chameleon/master/readme/nmap_scan.png" style="max-width:768px"/>
