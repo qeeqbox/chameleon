@@ -109,7 +109,7 @@ while read -p "`echo -e '\nChoose an option:\n1) Setup requirements (docker, doc
   case $REPLY in
     "1") setup_requirements;;
     "2") test_project;;
-		"7") deploy;;
+	"7") deploy;;
     "8") dev;;
     "9") test;;
     *) echo "Invalid option";;

@@ -37,6 +37,7 @@ services:
       - NET_ADMIN
     depends_on:
       - honeypots
+      - postgres
       - syslog
     networks:
       - backend
