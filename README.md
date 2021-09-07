@@ -125,7 +125,7 @@ pip install rdpy==1.3.2
 By using this framework, you are accepting the license terms of all these packages: `grafana, tcpdump, nmap, psycopg, dnsutils, scapy, netifaces, pyftpdlib, sqlalchemy, pyyaml, paramiko, impacket, rdpy, psutil, requests, FreeRDP, SMBClient, tigervnc`
 
 ## Some News\Articles
-[kitploit](https://www.kitploit.com/2021/03/chameleon-customizable-honeypots-for.html) [redteaming](https://redteaming.net/pages/201db2/) [my-infosec-awesome](https://github.com/pe3zx/my-infosec-awesome) [blackhatethicalhacking](https://www.blackhatethicalhacking.com/tools/chameleon/) [securityonline](https://securityonline.info/chameleon-customizable-honeypots-for-monitoring-network-traffic-bots-activities/) [redpacketsecurity](https://www.redpacketsecurity.com/chameleon-customizable-honeypots-for-monitoring-network-traffic-bots-activities-and-usernamepassword-credentials-dns-http-proxy-http-https-ssh-pop3-imap-stmp-rdp-vnc-smb-socks5-redis/)
+[securehoney](https://securehoney.net/awesome-honeypots.html) [kitploit](https://www.kitploit.com/2021/03/chameleon-customizable-honeypots-for.html) [redteaming](https://redteaming.net/pages/201db2/) [my-infosec-awesome](https://github.com/pe3zx/my-infosec-awesome) [blackhatethicalhacking](https://www.blackhatethicalhacking.com/tools/chameleon/) [securityonline](https://securityonline.info/chameleon-customizable-honeypots-for-monitoring-network-traffic-bots-activities/) [redpacketsecurity](https://www.redpacketsecurity.com/chameleon-customizable-honeypots-for-monitoring-network-traffic-bots-activities-and-usernamepassword-credentials-dns-http-proxy-http-https-ssh-pop3-imap-stmp-rdp-vnc-smb-socks5-redis/)
 
 ## Disclaimer\Notes
 - Do not deploy without proper configuration
