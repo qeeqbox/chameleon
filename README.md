@@ -3,9 +3,9 @@
 #
 [![Generic badge](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/qeeqbox/chameleon/master/info&label=version&query=$.version&colorB=blue&style=flat-square)](https://github.com/qeeqbox/chameleon/blob/master/changes.md) [![Generic badge](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/qeeqbox/chameleon/master/info&label=build&query=$.dockercomposebuild&colorB=green&style=flat-square)](https://github.com/qeeqbox/chameleon/blob/master/changes.md) [![Generic badge](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/qeeqbox/chameleon/master/info&label=test&query=$.automatedtest&colorB=green&style=flat-square)](https://github.com/qeeqbox/chameleon/blob/master/changes.md) [![Generic badge](https://img.shields.io/static/v1?label=%F0%9F%91%8D&message=!&color=yellow&style=flat-square)](https://github.com/qeeqbox/chameleon/stargazers)
 
-19 Customizable honeypots for monitoring network traffic, bots activities and username\password credentials (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP, VNC, SMB, SOCKS5, Redis, TELNET, Postgres, MySQL, MSSQL, Elastic and ldap)
+19 Customizable honeypots for monitoring network traffic, bots activities, and username\password credentials (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP, VNC, SMB, SOCKS5, Redis, TELNET, Postgres, MySQL, MSSQL, Elastic and ldap)
 
-`Chameleon is considered very effective. This is an active defense tool. The system simulates open unprotected ports and takes on attempts to find vulnerabilities` - by [Dean Chester, Chief Editor of cooltechzone](https://cooltechzone.com/malware-removal/most-dangerous-malware-in-2021)
+`Chameleon is considered very effective. This is an active defense tool. The system simulates open, unprotected ports and takes on attempts to find vulnerabilities` - by [Dean Chester, Chief Editor of cooltechzone](https://cooltechzone.com/malware-removal/most-dangerous-malware-in-2021)
 
 ## Grafana Interface
 <img src="https://raw.githubusercontent.com/qeeqbox/chameleon/master/readme/intro.gif" style="max-width:768px"/>
@@ -19,8 +19,8 @@
 ## General Features
 - Modular approach (honeypots run as scripts or imported as objects)
 - Most honeypots serve as servers (Only a few that emulate the application layer protocols)
-- Settings servers with username, password and banner (Default username and password are test)
-- ICMP, DNS TCP and UDP payloads are parsed and check against common patterns
+- Settings servers with username, password, and banner (Default username and password are test)
+- ICMP, DNS TCP, and UDP payloads are parsed and checked against common patterns
 - Visualized Grafana interfaces for monitoring the results (Filter by IP - default is all)
 - Unstructured and structured logs are parsed and inserted into Postgres
 - All honeypots contain clients for testing the servers
@@ -36,7 +36,7 @@ cd chameleon
 chmod +x ./run.sh
 ./run.sh test
 ```
-The Grafana interface http://localhost:3000 will open automatically after finishing the initialization process (username is admin and passowrd is admin). If you don't see Chameleon dashboard, click on the search icon in the left bar and add it
+The Grafana interface http://localhost:3000 will open automatically after the initialization process (username is admin and password is admin). If you don't see the Chameleon dashboard, click on the search icon in the left bar and add it.
 
 #### On ubuntu 18 or 19 System (Deploy)
 ```bash
@@ -46,7 +46,7 @@ chmod +x ./run.sh
 ./run.sh deploy
 ```
 
-The Grafana interface http://localhost:3000 will open automatically after finishing the initialization process (username is changeme457f6460cb287 and passowrd is changemed23b8cc6a20e0). If you don't see Chameleon dashboard, click on the search icon in the left bar and add it.
+The Grafana interface http://localhost:3000 will open automatically after the initialization process (username is changeme457f6460cb287 and password is changemed23b8cc6a20e0). If you don't see the Chameleon dashboard, click on the search icon in the left bar and add it.
 
 Wait for a few seconds until honeypot shows the IP address
 ```bash
@@ -62,7 +62,7 @@ or run any network tool against it
 nmap 172.19.0.3
 ```
 
-#### Or, import your desired non-blocking server as object (SSH Server)
+#### Or, import your desired non-blocking server as an object (SSH Server)
 You can do that by using this package [honeypots](https://github.com/qeeqbox/honeypots)
 
 ## If you don't see Chameleon dashboard, click on the search icon in the left bar and add it 
@@ -114,8 +114,8 @@ pip install rdpy==1.3.2
 - Code Cleanup
 - Switching some servers to twisted 
 - Adding graceful connection close (error response)
-- Implementing the rest of servers
-- Adding some detection logic to the sinffer
+- Implementing the rest of the servers
+- Adding some detection logic to the sniffer
 - Adding a control panel
 
 ## Resources
@@ -131,7 +131,7 @@ By using this framework, you are accepting the license terms of all these packag
 - Do not deploy without proper configuration
 - Setup some security group rules and remove default credentials
 - Almost all servers and emulators are stripped-down - You can adjust that as needed
-- Please let me know if i missed a resource or dependency
+- Please let me know if I missed a resource or dependency
 
 ## Other Projects
 [![](https://github.com/qeeqbox/.github/blob/main/data/social-analyzer.png)](https://github.com/qeeqbox/social-analyzer) [![](https://github.com/qeeqbox/.github/blob/main/data/analyzer.png)](https://github.com/qeeqbox/analyzer) [![](https://github.com/qeeqbox/.github/blob/main/data/honeypots.png)](https://github.com/qeeqbox/honeypots) [![](https://github.com/qeeqbox/.github/blob/main/data/osint.png)](https://github.com/qeeqbox/osint) [![](https://github.com/qeeqbox/.github/blob/main/data/url-sandbox.png)](https://github.com/qeeqbox/url-sandbox) [![](https://github.com/qeeqbox/.github/blob/main/data/mitre-visualizer.png)](https://github.com/qeeqbox/mitre-visualizer) [![](https://github.com/qeeqbox/.github/blob/main/data/woodpecker.png)](https://github.com/qeeqbox/woodpecker) [![](https://github.com/qeeqbox/.github/blob/main/data/docker-images.png)](https://github.com/qeeqbox/docker-images) [![](https://github.com/qeeqbox/.github/blob/main/data/seahorse.png)](https://github.com/qeeqbox/seahorse) [![](https://github.com/qeeqbox/.github/blob/main/data/rhino.png)](https://github.com/qeeqbox/rhino)
