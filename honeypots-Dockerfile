@@ -2,7 +2,7 @@ FROM python:3.8
 RUN echo iptables-persistent iptables-persistent/autosave_v4 boolean true | debconf-set-selections && \
 	echo iptables-persistent iptables-persistent/autosave_v6 boolean true | debconf-set-selections && \
 	apt-get update -y && apt-get install -y iptables-persistent tcpdump nmap iputils-ping libpq-dev python3-psycopg2 lsof psmisc dnsutils libffi-dev libssl-dev
-RUN pip3 install honeypots==0.28
+RUN pip3 install honeypots==0.31
 WORKDIR app
 COPY config.json .
 ARG PORTS
