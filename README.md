@@ -33,8 +33,8 @@
 ```bash
 git clone https://github.com/qeeqbox/chameleon.git
 cd chameleon
-chmod +x ./run.sh
-./run.sh test
+sudo chmod +x ./run.sh
+sudo ./run.sh test
 ```
 The Grafana interface http://localhost:3000 will open automatically after the initialization process (username is admin and password is admin). If you don't see the Chameleon dashboard, click on the search icon in the left bar and add it.
 
@@ -42,8 +42,8 @@ The Grafana interface http://localhost:3000 will open automatically after the in
 ```bash
 git clone https://github.com/qeeqbox/chameleon.git
 cd chameleon
-chmod +x ./run.sh
-./run.sh deploy
+sudo chmod +x ./run.sh
+sudo ./run.sh deploy
 ```
 
 The Grafana interface http://localhost:3000 will open automatically after the initialization process (username is changeme457f6460cb287 and password is changemed23b8cc6a20e0). If you don't see the Chameleon dashboard, click on the search icon in the left bar and add it.
