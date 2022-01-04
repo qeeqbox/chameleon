@@ -4,6 +4,7 @@
     "syslog_address":"udp://syslog:514",
     "syslog_facility":3,
     "postgres":"//changeme027a088931d22:changeme0f40773877963@chameleon_postgres:9999/chameleon",
+    "db_options":["drop"],
     "filter": "not port 9999 and not port 514",
     "interface": "eth0",
     "honeypots": {
