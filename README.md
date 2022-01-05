@@ -64,7 +64,7 @@ nmap 172.19.0.3
 
 #### Nested - Docker
 ```sh
-sudo docker run -it --privileged -v /var/run/docker.sock:/var/run/docker.sock centos:latest
+sudo docker run -it --privileged -v /var/run/docker.sock:/var/run/docker.sock ubuntu:latest
 git clone https://github.com/qeeqbox/chameleon.git
 cd chameleon
 sudo chmod +x ./run.sh
