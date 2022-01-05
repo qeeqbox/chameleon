@@ -3,9 +3,15 @@
 echo -e "\nQeeqBox Chameleon v$(jq -r '.version' info) starter script -> https://github.com/qeeqbox/Chameleon"
 echo -e "Current servers (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP, VNC, SMB, SOCK5, TELNET and Postgres)\n"\
 
-echo "[x] Install & update pre-requirements"
-sudo apt-get update -y
-sudo apt-get install -y curl jq > /dev/null
+if [[ $EUID -ne 0 ]]; then
+   echo "You have to run this script with higher privileges" 
+   exit 1
+fi
+
+echo "[x] System updating"
+apt-get update -y
+echo "[x] Install requirements"
+apt-get install -y curl jq sudo > /dev/null
 
 fix_ports_deploy () {
 	echo "[x] Fixing ports"
@@ -23,11 +29,12 @@ fix_ports_deploy () {
 }
 
 setup_requirements () {
-	echo "[x] Install & update requirements"
-	sudo apt-get update -y
-	sudo apt-get install -y linux-headers-$(uname -r) docker.io xdg-utils > /dev/null
+	echo "[x] Install docker.io xdg-utils linux-headers"
+	apt-get install -y linux-headers-$(uname -r) docker.io xdg-utils > /dev/null
 	curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+	echo "[x] Setting up docker-compose"
 	chmod +x /usr/local/bin/docker-compose
+	echo "[x] Checking docker & docker-compose"
 	which docker-compose && echo "Good"
 	which docker && echo "Good"
 }
@@ -52,6 +59,7 @@ dep_project () {
 }
 
 stop_containers () {
+	echo "[x] Stopping all chameleon containers"
 	docker-compose -f docker-compose-test.yml down -v 2>/dev/null
 	docker-compose -f docker-compose-dev.yml down -v 2>/dev/null
 	docker stop $(docker ps | grep chameleon_ | awk '{print $1}') 2>/dev/null
