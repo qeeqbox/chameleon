@@ -1,5 +1,4 @@
 #!/bin/bash
-export DEBIAN_FRONTEND=noninteractive
 echo -e "\nQeeqBox Chameleon starter script -> https://github.com/qeeqbox/Chameleon"
 echo -e "Current servers (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP, VNC, SMB, SOCK5, TELNET and Postgres)\n"\
 
@@ -11,7 +10,7 @@ fi
 echo "[x] System updating"
 apt-get update -y
 echo "[x] Install requirements"
-apt-get install -y curl jq sudo > /dev/null
+DEBIAN_FRONTEND=noninteractive apt-get install -y curl jq sudo > /dev/null
 
 fix_ports_deploy () {
 	echo "[x] Fixing ports"
@@ -30,7 +29,7 @@ fix_ports_deploy () {
 
 setup_requirements () {
 	echo "[x] Install docker.io xdg-utils linux-headers"
-	apt-get install -y linux-headers-$(uname -r) docker.io xdg-utils > /dev/null
+	DEBIAN_FRONTEND=noninteractive apt-get install -y linux-headers-$(uname -r) docker.io xdg-utils > /dev/null
 	curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 	echo "[x] Setting up docker-compose"
 	chmod +x /usr/local/bin/docker-compose
