@@ -1,11 +1,16 @@
 #!/bin/bash
-
-echo -e "\nQeeqBox Chameleon v$(jq -r '.version' info) CentOS starter script -> https://github.com/qeeqbox/Chameleon"
+echo -e "\nQeeqBox Chameleon starter script -> https://github.com/qeeqbox/Chameleon"
 echo -e "Current servers (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP, VNC, SMB, SOCK5, TELNET and Postgres)\n"\
 
-echo "[x] Install & update pre-requirements"
-sudo yum update -y
-sudo yum install -y curl jq > /dev/null
+if [[ $EUID -ne 0 ]]; then
+   echo "You have to run this script with higher privileges" 
+   exit 1
+fi
+
+echo "[x] System updating"
+yum update -y
+echo "[x] Install requirements"
+yum install -y curl jq sudo
 
 fix_ports_deploy () {
 	echo "[x] Fixing ports"
@@ -46,22 +51,23 @@ xdg-open http://localhost:3000
 }
 
 test_project () {
-	sudo docker-compose -f docker-compose-test.yml up --build --remove-orphan
+	which docker-compose && docker-compose -f docker-compose-test.yml up --build --remove-orphan
 }
 
 dev_project () {
-	sudo docker-compose -f docker-compose-dev.yml up --build --remove-orphan
+	which docker-compose && docker-compose -f docker-compose-dev.yml up --build --remove-orphan
 }
 
 dep_project () {
-	sudo docker-compose -f docker-compose-dep.yml up --build --force-recreate --no-deps --remove-orphan
+	which docker-compose && docker-compose -f docker-compose-dep.yml up --build --force-recreate --no-deps --remove-orphan
 }
 
 stop_containers () {
-	sudo docker-compose -f docker-compose-test.yml down -v 2>/dev/null
-	sudo docker-compose -f docker-compose-dev.yml down -v 2>/dev/null
-	sudo docker stop $(docker ps | grep chameleon_ | awk '{print $1}') 2>/dev/null
-	sudo docker kill $(docker ps | grep chameleon_ | awk '{print $1}') 2>/dev/null
+	echo "[x] Stopping all chameleon containers"
+	docker-compose -f docker-compose-test.yml down -v 2>/dev/null
+	docker-compose -f docker-compose-dev.yml down -v 2>/dev/null
+	docker stop $(docker ps | grep chameleon_ | awk '{print $1}') 2>/dev/null
+	docker kill $(docker ps | grep chameleon_ | awk '{print $1}') 2>/dev/null
 }
 
 deploy_aws_project () {
@@ -70,32 +76,32 @@ deploy_aws_project () {
 
 test () {
 	echo "[x] Init test"
-	stop_containers
-	wait_on_web_interface &
+	which docker && which docker-compose && stop_containers
 	setup_requirements
-	test_project
-	stop_containers
+	wait_on_web_interface &
+	which docker && which docker-compose && test_project
+	which docker && which docker-compose && stop_containers
 	kill %% 2>/dev/null
 }
 
 dev () {
 	echo "[x] Init dev"
-	stop_containers
-	wait_on_web_interface &
+	which docker && which docker-compose && stop_containers
 	setup_requirements
-	dev_project
-	stop_containers
+	wait_on_web_interface &
+	which docker && which docker-compose && dev_project
+	which docker && which docker-compose && stop_containers
 	kill %% 2>/dev/null
 }
 
 deploy () {
 	echo "[x] Init deploy"
-	stop_containers
-	wait_on_web_interface &
+	which docker && which docker-compose && stop_containers
 	setup_requirements
+	wait_on_web_interface &
 	fix_ports_deploy
-	dep_project
-	stop_containers
+	which docker && which docker-compose && dep_project
+	which docker && which docker-compose && stop_containers
 	kill %% 2>/dev/null
 }
 
