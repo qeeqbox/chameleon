@@ -47,23 +47,23 @@ xdg-open http://localhost:3000
 }
 
 test_project () {
-	docker-compose -f docker-compose-test.yml up --build --remove-orphan
+	which docker-compose && docker-compose -f docker-compose-test.yml up --build --remove-orphan
 }
 
 dev_project () {
-	docker-compose -f docker-compose-dev.yml up --build --remove-orphan
+	which docker-compose && docker-compose -f docker-compose-dev.yml up --build --remove-orphan
 }
 
 dep_project () {
-	docker-compose -f docker-compose-dep.yml up --build --force-recreate --no-deps --remove-orphan
+	which docker-compose && docker-compose -f docker-compose-dep.yml up --build --force-recreate --no-deps --remove-orphan
 }
 
 stop_containers () {
 	echo "[x] Stopping all chameleon containers"
-	which docker-compose && docker-compose -f docker-compose-test.yml down -v 2>/dev/null
-	which docker-compose && docker-compose -f docker-compose-dev.yml down -v 2>/dev/null
-	which docker && docker stop $(docker ps | grep chameleon_ | awk '{print $1}') 2>/dev/null
-	which docker && docker kill $(docker ps | grep chameleon_ | awk '{print $1}') 2>/dev/null
+	docker-compose -f docker-compose-test.yml down -v 2>/dev/null
+	docker-compose -f docker-compose-dev.yml down -v 2>/dev/null
+	docker stop $(docker ps | grep chameleon_ | awk '{print $1}') 2>/dev/null
+	docker kill $(docker ps | grep chameleon_ | awk '{print $1}') 2>/dev/null
 }
 
 deploy_aws_project () {
@@ -72,32 +72,32 @@ deploy_aws_project () {
 
 test () {
 	echo "[x] Init test"
-	stop_containers
 	wait_on_web_interface &
-	setup_requirements
-	test_project
-	stop_containers
+	which docker && which docker-compose && stop_containers
+	which docker && which docker-compose && setup_requirements
+	which docker && which docker-compose && test_project
+	which docker && which docker-compose && stop_containers
 	kill %% 2>/dev/null
 }
 
 dev () {
 	echo "[x] Init dev"
-	stop_containers
 	wait_on_web_interface &
-	setup_requirements
-	dev_project
-	stop_containers
+	which docker && which docker-compose && stop_containers
+	which docker && which docker-compose && setup_requirements
+	which docker && which docker-compose && dev_project
+	which docker && which docker-compose && stop_containers
 	kill %% 2>/dev/null
 }
 
 deploy () {
 	echo "[x] Init deploy"
-	stop_containers
 	wait_on_web_interface &
-	setup_requirements
 	fix_ports_deploy
-	dep_project
-	stop_containers
+	which docker && which docker-compose && stop_containers
+	which docker && which docker-compose && setup_requirements
+	which docker && which docker-compose && dep_project
+	which docker && which docker-compose && stop_containers
 	kill %% 2>/dev/null
 }
 
