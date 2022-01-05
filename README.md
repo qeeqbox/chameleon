@@ -62,6 +62,15 @@ or run any network tool against it
 nmap 172.19.0.3
 ```
 
+#### Nested - Docker
+```sh
+sudo docker run -it --privileged -v /var/run/docker.sock:/var/run/docker.sock centos:latest
+git clone https://github.com/qeeqbox/chameleon.git
+cd chameleon
+sudo chmod +x ./run.sh
+sudo ./run.sh test
+```
+
 #### Or, import your desired non-blocking server as an object (SSH Server)
 You can do that by using this package [honeypots](https://github.com/qeeqbox/honeypots)
 
@@ -107,16 +116,6 @@ pip install rdpy==1.3.2
 - 2020.V.01.03 switched ftp servers to twisted
 - 2020.V.01.02 switched http and https servers to twisted
 - 2020.V.01.02 Fixed changing ip in grafana interface
-
-## Roadmap
-- ~~Refactoring logging~~
-- ~~Fixing logger~~
-- Code Cleanup
-- Switching some servers to twisted 
-- Adding graceful connection close (error response)
-- Implementing the rest of the servers
-- Adding some detection logic to the sniffer
-- Adding a control panel
 
 ## Resources
 `Twisted, documentation, Impacket, documentation, Grafana, documentation, Expert, Twisted, robertheaton`
