@@ -60,10 +60,10 @@ dep_project () {
 
 stop_containers () {
 	echo "[x] Stopping all chameleon containers"
-	docker-compose -f docker-compose-test.yml down -v 2>/dev/null
-	docker-compose -f docker-compose-dev.yml down -v 2>/dev/null
-	docker stop $(docker ps | grep chameleon_ | awk '{print $1}') 2>/dev/null
-	docker kill $(docker ps | grep chameleon_ | awk '{print $1}') 2>/dev/null
+	which docker-compose && docker-compose -f docker-compose-test.yml down -v 2>/dev/null
+	which docker-compose && docker-compose -f docker-compose-dev.yml down -v 2>/dev/null
+	which docker && docker stop $(docker ps | grep chameleon_ | awk '{print $1}') 2>/dev/null
+	which docker && docker kill $(docker ps | grep chameleon_ | awk '{print $1}') 2>/dev/null
 }
 
 deploy_aws_project () {
