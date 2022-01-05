@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -e "\nQeeqBox Chameleon v$(jq -r '.version' info) starter script -> https://github.com/qeeqbox/Chameleon"
+echo -e "\nQeeqBox Chameleon starter script -> https://github.com/qeeqbox/Chameleon"
 echo -e "Current servers (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP, VNC, SMB, SOCK5, TELNET and Postgres)\n"\
 
 if [[ $EUID -ne 0 ]]; then
@@ -72,9 +72,9 @@ deploy_aws_project () {
 
 test () {
 	echo "[x] Init test"
-	wait_on_web_interface &
 	which docker && which docker-compose && stop_containers
-	which docker && which docker-compose && setup_requirements
+	setup_requirements
+	wait_on_web_interface &
 	which docker && which docker-compose && test_project
 	which docker && which docker-compose && stop_containers
 	kill %% 2>/dev/null
@@ -82,9 +82,9 @@ test () {
 
 dev () {
 	echo "[x] Init dev"
-	wait_on_web_interface &
 	which docker && which docker-compose && stop_containers
-	which docker && which docker-compose && setup_requirements
+	setup_requirements
+	wait_on_web_interface &
 	which docker && which docker-compose && dev_project
 	which docker && which docker-compose && stop_containers
 	kill %% 2>/dev/null
@@ -92,10 +92,10 @@ dev () {
 
 deploy () {
 	echo "[x] Init deploy"
+	which docker && which docker-compose && stop_containers
+	setup_requirements
 	wait_on_web_interface &
 	fix_ports_deploy
-	which docker && which docker-compose && stop_containers
-	which docker && which docker-compose && setup_requirements
 	which docker && which docker-compose && dep_project
 	which docker && which docker-compose && stop_containers
 	kill %% 2>/dev/null
