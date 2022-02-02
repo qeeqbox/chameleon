@@ -5,6 +5,8 @@
 
 19 Customizable honeypots for monitoring network traffic, bots activities, and username\password credentials (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP, VNC, SMB, SOCKS5, Redis, TELNET, Postgres, MySQL, MSSQL, Elastic and ldap)
 
+If you want to implement the honeypots in your project, check [QeeqBox honeypots](https://github.com/qeeqbox/honeypots)
+
 `Chameleon is considered very effective. This is an active defense tool. The system simulates open, unprotected ports and takes on attempts to find vulnerabilities` - by [Dean Chester, Chief Editor of cooltechzone](https://cooltechzone.com/malware-removal/most-dangerous-malware-in-2021)
 
 ## Grafana Interface
