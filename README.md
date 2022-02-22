@@ -7,7 +7,7 @@
 
 If you want to implement the honeypots in your project, check [QeeqBox honeypots](https://github.com/qeeqbox/honeypots)
 
-`Chameleon is considered very effective. This is an active defense tool. The system simulates open, unprotected ports and takes on attempts to find vulnerabilities` - by [Dean Chester, Chief Editor of cooltechzone](https://cooltechzone.com/malware-removal/most-dangerous-malware-in-2021)
+`Chameleon is considered very effective. This is an active defense tool. The system simulates open, unprotected ports and takes on attempts to find vulnerabilities` - by Dean Chester, Chief Editor of cooltechzone
 
 `Pon un Honeypot en tu vida` by [Héctor Herrero, bujarra](https://www.bujarra.com/pon-un-honeypot-en-tu-vida/)
 
